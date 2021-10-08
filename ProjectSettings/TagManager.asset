@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collectable
   - ThrowPoint
+  - Ground
   layers:
   - Default
   - TransparentFX

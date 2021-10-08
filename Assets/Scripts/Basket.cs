@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ public class Basket : MonoBehaviour
     private List<Rigidbody> collectedRb = new List<Rigidbody>();
     private float throwPower = 200f;
     private SwerveMovement playerMovement;
+    public static event Action OnLevelCompleted;
 
     private void Start()
     {
@@ -22,6 +24,11 @@ public class Basket : MonoBehaviour
         else if (other.tag == "ThrowPoint")
         {
             ThrowThemAll();
+        }
+        else if (other.tag == "Finish")
+        {
+            PlayerPrefs.SetInt("currentLevel", PlayerPrefs.GetInt("currentLevel") + 1);
+            OnLevelCompleted.Invoke();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -41,7 +48,8 @@ public class Basket : MonoBehaviour
         Debug.Log("Throw");
         foreach(Rigidbody rb in collectedRb)
         {
-            rb.AddForce(0, 0, throwPower);
+            if(rb!=null) rb.AddForce(0, 0, throwPower);
+
         }
     }
 }

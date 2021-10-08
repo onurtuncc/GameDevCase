@@ -12,8 +12,6 @@ public class CameraControl : MonoBehaviour
     void Start()
     {
         //getting players transform
-        
-
         offset = transform.position;
     }
 

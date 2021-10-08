@@ -6,21 +6,28 @@ using System;
 
 public class ObjectPit : MonoBehaviour
 {
-    [SerializeField] private Material groundMat;
+    [SerializeField]private Material groundMat;
+    [SerializeField] private int neededAmount = 10;
     public static event Action OnLevelFailed;
+
     private TMP_Text neededAmountText;
     private string textDisplay = "{0}/{1}";
-    [SerializeField] private int neededAmount = 10;
+    
     private SwerveMovement playerMovement;
     private Renderer pitRenderer;
+
     private int amountInPit = 0;
     private float pitDepth=1;
-    private float lerpSpeed = 2f;
+    private float lerpSpeed = 5f;
     private bool isPit = true;
     private float waitTime = 3f;
+    
+
+    
     // Start is called before the first frame update
     void Start()
     {
+        
         playerMovement = FindObjectOfType<SwerveMovement>();
         pitRenderer = GetComponent<Renderer>();
         neededAmountText = GetComponentInChildren<TMP_Text>();
@@ -32,7 +39,7 @@ public class ObjectPit : MonoBehaviour
         if (!isPit) return;
         if (collision.gameObject.tag == "Collectable")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
             amountInPit++;
             neededAmountText.text = string.Format(textDisplay, amountInPit, neededAmount);
             if(amountInPit==1)StartCoroutine(CheckPitStatus());
@@ -40,6 +47,7 @@ public class ObjectPit : MonoBehaviour
         }
         
     }
+    
     IEnumerator CheckPitStatus()
     {
         yield return new WaitForSeconds(waitTime);
