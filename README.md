@@ -1,2 +1,2 @@
 # GameDevCase
-Biter3D clone
+Picker3D clone
