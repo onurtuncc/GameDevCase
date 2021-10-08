@@ -33,7 +33,14 @@ public class ObjectPit : MonoBehaviour
         neededAmountText = GetComponentInChildren<TMP_Text>();
         neededAmountText.text = string.Format(textDisplay,amountInPit, neededAmount);
     }
-
+    private void PassThePit()
+    {
+        Destroy(neededAmountText);
+        pitRenderer.material.color = groundMat.color;
+        transform.position = Vector3.Lerp(transform.position, transform.position + Vector3.up * pitDepth, lerpSpeed);
+        playerMovement.canMove = true;
+        isPit = false;
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (!isPit) return;
@@ -53,11 +60,7 @@ public class ObjectPit : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         if (amountInPit >= neededAmount)
         {
-            Destroy(neededAmountText);
-            pitRenderer.material.color = groundMat.color;
-            transform.position = Vector3.Lerp(transform.position, transform.position + Vector3.up * pitDepth, lerpSpeed);
-            playerMovement.canMove = true;
-            isPit = false;
+            PassThePit();
         }
         else
         {
@@ -66,4 +69,5 @@ public class ObjectPit : MonoBehaviour
         }
 
     }
+    
 }
