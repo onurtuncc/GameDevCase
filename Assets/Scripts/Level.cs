@@ -19,11 +19,14 @@ public class Level : MonoBehaviour
         //Scene transition
         if (!isReplay)
         {
+            
             currentLevel = PlayerPrefs.GetInt("currentLevel");
             Debug.Log(currentLevel);
             if (currentLevel > levelPrefabs.Length)
             {
-                currentLevel = Random.Range(1, levelPrefabs.Length + 1);
+                
+                 currentLevel = Random.Range(1, levelPrefabs.Length + 1);
+
             }
             
         }

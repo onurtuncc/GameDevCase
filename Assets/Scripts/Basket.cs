@@ -6,7 +6,7 @@ using UnityEngine;
 public class Basket : MonoBehaviour
 {
     private List<Rigidbody> collectedRb = new List<Rigidbody>();
-    private float throwPower = 200f;
+    private float throwPower = 150f;
     private SwerveMovement playerMovement;
     public static event Action OnLevelCompleted;
 
