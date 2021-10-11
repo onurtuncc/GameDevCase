@@ -9,6 +9,7 @@ public class Basket : MonoBehaviour
     private float throwPower = 150f;
     private SwerveMovement playerMovement;
     public static event Action OnLevelCompleted;
+    public static event Action OnThrowPoint;
 
     private void Start()
     {
@@ -24,6 +25,7 @@ public class Basket : MonoBehaviour
         else if (other.tag == "ThrowPoint")
         {
             ThrowThemAll();
+            OnThrowPoint.Invoke();
         }
         else if (other.tag == "Finish")
         {

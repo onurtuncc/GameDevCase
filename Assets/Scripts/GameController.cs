@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +6,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField]SwerveMovement movement;
     [SerializeField] UIController uiController;
-    [SerializeField] Level levelController;
+    [SerializeField] LevelManager levelController;
     public void StartGameButton()
     {
         StartGameplay();
@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour
         //Transition effect
         movement.canMove = false;
         uiController.LevelBeginUI();
-        levelController.LoadLevel(isReplay);
+        levelController.PickLevelAndCreate(isReplay);
         
     }
 }

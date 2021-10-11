@@ -6,8 +6,8 @@ using System;
 
 public class ObjectPit : MonoBehaviour
 {
-    [SerializeField]private Material groundMat;
-    [SerializeField] private int neededAmount = 10;
+    public Material groundMat;
+    public int neededAmount = 10;
     public static event Action OnLevelFailed;
 
     private TMP_Text neededAmountText;
@@ -33,6 +33,14 @@ public class ObjectPit : MonoBehaviour
         neededAmountText = GetComponentInChildren<TMP_Text>();
         neededAmountText.text = string.Format(textDisplay,amountInPit, neededAmount);
     }
+    private void OnEnable()
+    {
+        Basket.OnThrowPoint += StartPitCoroutine;
+    }
+    private void OnDestroy()
+    {
+        Basket.OnThrowPoint -= StartPitCoroutine;
+    }
     private void PassThePit()
     {
         Destroy(neededAmountText);
@@ -49,10 +57,13 @@ public class ObjectPit : MonoBehaviour
             collision.gameObject.SetActive(false);
             amountInPit++;
             neededAmountText.text = string.Format(textDisplay, amountInPit, neededAmount);
-            if(amountInPit==1)StartCoroutine(CheckPitStatus());
             
         }
         
+    }
+    private void StartPitCoroutine()
+    {
+        StartCoroutine(CheckPitStatus());
     }
     
     IEnumerator CheckPitStatus()
