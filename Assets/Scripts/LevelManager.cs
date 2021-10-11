@@ -15,6 +15,7 @@ public class LevelManager : MonoBehaviour
     private GameObject pit;
     private int currentLevel;
     private GameObject currentLevelPrefab;
+    private float defaultCollectableMass = 0.5f;
 
 
     private void Start()
@@ -72,18 +73,56 @@ public class LevelManager : MonoBehaviour
             pit.GetComponent<Renderer>().material = level.pitMat;
             pit.GetComponent<ObjectPit>().neededAmount = level.objectPoolNeededAmount[i];
             pit.GetComponent<ObjectPit>().groundMat = level.groundMat;
-
+            //Setting up positions and scales
             float roadLength = level.roads[i].roadLength;
             plane.transform.localScale = new Vector3(1, 1, roadLength / 10);
             plane.transform.position = new Vector3(0, 0, prevRoadLength + prevPitLength+
                 roadLength/ 2);
             pitPlatform.transform.position = new Vector3(0,0,roadLength +prevRoadLength+prevPitLength+ defaultPitLength/2);
+
+            CreateObjectsOnRoad(level.roads[i]);
+            //Updating values
             prevRoadLength+= roadLength;
             prevPitLength+= defaultPitLength;
 
         }
         CreateFinishLine(level.groundMat);
         
+    }
+    private void CreateObjectsOnRoad(Road road)
+    {
+        var collectables = road.collectableObjectsOnRoad;
+        GameObject collectableElement;
+        for(int i = 0; i < collectables.Length; i++)
+        {
+            var collectable = collectables[i];
+            switch (collectable.objectType)
+            {
+                case (Collectableobject.ObjectType.Cube):
+                    collectableElement = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    break;
+                case (Collectableobject.ObjectType.Cylinder):
+                    collectableElement = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                    break;
+                case (Collectableobject.ObjectType.Sphere):
+                    collectableElement = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    break;
+                default:
+                    collectableElement = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    break;
+            }
+            collectableElement.transform.localScale *= collectable.size;
+            collectableElement.transform.position = collectable.spawnPoint+Vector3.up*collectable.size;
+            collectableElement.transform.SetParent(currentLevelPrefab.transform);
+            AddCollectableFeatures(collectableElement);
+        }
+    }
+    private void AddCollectableFeatures(GameObject collectableObject)
+    {
+        Rigidbody rb=collectableObject.AddComponent<Rigidbody>();
+        rb.mass = defaultCollectableMass;
+        collectableObject.tag = "Collectable";
+
     }
     private void CreateFinishLine(Material groundMat)
     {
