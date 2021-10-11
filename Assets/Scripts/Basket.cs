@@ -9,7 +9,6 @@ public class Basket : MonoBehaviour
     private float throwPower = 150f;
     private SwerveMovement playerMovement;
     public static event Action OnLevelCompleted;
-    public static event Action OnThrowPoint;
 
     private void Start()
     {
@@ -20,12 +19,13 @@ public class Basket : MonoBehaviour
         if (other.tag == "Collectable")
         {
             collectedRb.Add(other.GetComponent<Rigidbody>());
-            Debug.Log("Added to list");
+           
         }
         else if (other.tag == "ThrowPoint")
         {
+            other.GetComponent<ThrowPointController>().ActivateObjectPit();
             ThrowThemAll();
-            OnThrowPoint.Invoke();
+            
         }
         else if (other.tag == "Finish")
         {
@@ -38,7 +38,7 @@ public class Basket : MonoBehaviour
         if (other.tag == "Collectable")
         {
             collectedRb.Remove(other.GetComponent<Rigidbody>());
-            Debug.Log("Removed from list");
+           
         }
 
     }
@@ -46,8 +46,7 @@ public class Basket : MonoBehaviour
     private void ThrowThemAll()
     {
         playerMovement.canMove = false;
-        
-        Debug.Log("Throw");
+
         foreach(Rigidbody rb in collectedRb)
         {
             if(rb!=null) rb.AddForce(0, 0, throwPower);

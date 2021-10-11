@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 2784713980803072243}
   - component: {fileID: 2784713980803072242}
   - component: {fileID: 2784713980803072246}
+  - component: {fileID: 9046999225558507320}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: ThrowPoint
   m_TagString: ThrowPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +33,7 @@ Transform:
   m_LocalScale: {x: 10, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2784713981408690367}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2784713980803072244
 MeshFilter:
@@ -110,6 +111,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &9046999225558507320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2784713980803072241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 976a3e22a2e434497ab7ce3b143d0b3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPit: {fileID: 2784713981315362800}
 --- !u!1 &2784713981250677328
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +155,7 @@ Transform:
   m_LocalScale: {x: 10, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 2784713981408690367}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2784713981250677332
 MeshFilter:
@@ -342,8 +356,8 @@ Transform:
   m_Children:
   - {fileID: 2784713981315362703}
   - {fileID: 2784713982040007428}
-  - {fileID: 2784713981250677329}
   - {fileID: 2784713980803072245}
+  - {fileID: 2784713981250677329}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

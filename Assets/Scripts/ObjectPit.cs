@@ -33,14 +33,7 @@ public class ObjectPit : MonoBehaviour
         neededAmountText = GetComponentInChildren<TMP_Text>();
         neededAmountText.text = string.Format(textDisplay,amountInPit, neededAmount);
     }
-    private void OnEnable()
-    {
-        Basket.OnThrowPoint += StartPitCoroutine;
-    }
-    private void OnDestroy()
-    {
-        Basket.OnThrowPoint -= StartPitCoroutine;
-    }
+    
     private void PassThePit()
     {
         Destroy(neededAmountText);
@@ -61,13 +54,11 @@ public class ObjectPit : MonoBehaviour
         }
         
     }
-    private void StartPitCoroutine()
-    {
-        StartCoroutine(CheckPitStatus());
-    }
     
-    IEnumerator CheckPitStatus()
+    
+    public IEnumerator CheckPitStatus()
     {
+
         yield return new WaitForSeconds(waitTime);
         if (amountInPit >= neededAmount)
         {

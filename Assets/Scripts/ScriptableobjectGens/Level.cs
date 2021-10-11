@@ -15,23 +15,10 @@ public class Level : ScriptableObject
     public int[] objectPoolNeededAmount;
 }
 
-[Serializable]
-public class Road
-{
-    public float roadLength;
-    public Collectableobject[] collectableObjectsOnRoad;
-}
 
 
-[Serializable]
-public class Collectableobject
-{
-    public enum ObjectType { Cube,Sphere,Cylinder };
-    public ObjectType objectType;
-    public float size;
-    //public bool isExplosion;
-    public Vector3 spawnPoint;
-}
+
+
 
     
 
