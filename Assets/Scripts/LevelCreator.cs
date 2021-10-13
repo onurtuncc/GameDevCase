@@ -10,60 +10,101 @@ public class LevelCreator : MonoBehaviour
 
     private GameObject plane;
     private GameObject pit;
+
+    private GameObject nextLevelPrefab;
     private GameObject currentLevelPrefab;
 
+    private float roadHorizontalLength = 10;
     private float prevRoadLength = 0;
     private float prevPitLength = 0;
+    private float barrierLength = 0;
 
     private float defaultPitLength = 10f;
     private float defaultCollectableMass = 0.5f;
+    private float endPosZ=0;
+    private float startPosZ = 0;
 
     
-    public void CreateLevel(Level level)
+    
+    public void CreateLevel(Level level,bool isReplay)
     {
-        ResetValues();
-        level.groundMat.color = level.groundColor;
-        level.pitMat.color = level.pitColor;
+        
+        Destroy(currentLevelPrefab);
+        var parentObject = new GameObject("Level Elements");
+        parentObject.transform.position += Vector3.forward * endPosZ;
+        if (isReplay)
+        {
+            startPosZ = 0;
+            currentLevelPrefab = parentObject;
+
+        }
+        else
+        {
+            startPosZ = endPosZ;
+            currentLevelPrefab = nextLevelPrefab;
+            nextLevelPrefab = parentObject;
+            
+        }
+        if(currentLevelPrefab!=null)currentLevelPrefab.transform.position = Vector3.zero;
+        prevPitLength = 0;
+        prevRoadLength = 0;
+       
         for (int i = 0; i < level.roads.Length; i++)
         {
             //Setting up our road
             plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
-            plane.transform.SetParent(currentLevelPrefab.transform);
-            plane.GetComponent<Renderer>().material = level.groundMat;
+            plane.transform.SetParent(parentObject.transform);
+            plane.GetComponent<Renderer>().material.color = level.groundColor;
             //Setting up pit
             GameObject pitPlatform = Instantiate(downPlatform);
-            pitPlatform.transform.SetParent(currentLevelPrefab.transform);
+            pitPlatform.transform.SetParent(parentObject.transform);
             pit = pitPlatform.transform.GetChild(0).gameObject;
-            pit.GetComponent<Renderer>().material = level.pitMat;
+            pit.GetComponent<Renderer>().material.color = level.pitColor;
             pit.GetComponent<ObjectPit>().neededAmount = level.objectPoolNeededAmount[i];
-            pit.GetComponent<ObjectPit>().groundMat = level.groundMat;
+            pit.GetComponent<ObjectPit>().groundColor = level.groundColor;
             //Setting up positions and scales
             float roadLength = level.roads[i].roadLength;
             plane.transform.localScale = new Vector3(1, 1, roadLength / 10);
-            plane.transform.position = new Vector3(0, 0, prevRoadLength + prevPitLength +
+            plane.transform.position = new Vector3(0, 0, startPosZ + prevRoadLength + prevPitLength +
                 roadLength / 2);
-            pitPlatform.transform.position = new Vector3(0, 0, roadLength + prevRoadLength + prevPitLength + defaultPitLength / 2);
+            pitPlatform.transform.position = new Vector3(0, 0, startPosZ+roadLength + prevRoadLength + prevPitLength + defaultPitLength / 2);
             //Creating objects on the road
-            CreateObjectsOnRoad(level.roads[i]);
+            CreateObjectsOnRoad(level.roads[i],parentObject);
             //Updating values
             prevRoadLength += roadLength;
             prevPitLength += defaultPitLength;
 
         }
-        CreateFinishLine(level.groundMat);
+        
+        CreateFinishLine(level.groundColor,parentObject,isReplay);
+        CreateSideBarriers(parentObject,isReplay);
+
 
     }
+    
 
-    private void ResetValues()
+    private void CreateSideBarriers(GameObject parentObject,bool isReplay)
     {
+        var sideBarrier = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        float posX = (roadHorizontalLength+ sideBarrier.transform.localScale.x)/2;
+        if (!isReplay)
+        {
+            barrierLength = endPosZ;
+        }
+        
+        var scale = sideBarrier.transform.localScale;
+        sideBarrier.transform.localScale = new Vector3(scale.x, scale.y, barrierLength);
+        sideBarrier.transform.position = new Vector3(posX, sideBarrier.transform.position.y, barrierLength / 2+startPosZ);
+        var sideBarrierLeft = Instantiate(sideBarrier);
+        sideBarrierLeft.transform.position = new Vector3(-posX, sideBarrier.transform.position.y, barrierLength / 2 + startPosZ);
+        sideBarrier.transform.SetParent(parentObject.transform);
+        sideBarrierLeft.transform.SetParent(parentObject.transform);
 
-        Destroy(currentLevelPrefab);
-        currentLevelPrefab = new GameObject("LevelElements");
-        prevPitLength = 0;
-        prevRoadLength = 0;
+
+
     }
 
-    private void CreateObjectsOnRoad(Road road)
+    private void CreateObjectsOnRoad(Road road,GameObject parentObject)
     {
         var collectables = road.collectableObjectsOnRoad;
         GameObject collectableElement;
@@ -86,8 +127,8 @@ public class LevelCreator : MonoBehaviour
                     break;
             }
             collectableElement.transform.localScale *= collectable.size;
-            collectableElement.transform.position = collectable.spawnPoint + Vector3.up * collectable.size;
-            collectableElement.transform.SetParent(currentLevelPrefab.transform);
+            collectableElement.transform.position = collectable.spawnPoint + Vector3.up * collectable.size + Vector3.forward* startPosZ;
+            collectableElement.transform.SetParent(parentObject.transform);
             AddCollectableFeatures(collectableElement);
         }
     }
@@ -98,12 +139,21 @@ public class LevelCreator : MonoBehaviour
         collectableObject.tag = "Collectable";
 
     }
-    private void CreateFinishLine(Material groundMat)
+    private void CreateFinishLine(Color groundColor,GameObject parentObject,bool isReplay)
     {
         GameObject end = Instantiate(finishPlatform);
-        end.transform.SetParent(currentLevelPrefab.transform);
-        end.GetComponent<Renderer>().material = groundMat;
-        end.transform.position = new Vector3(0, 0, prevRoadLength + prevPitLength +
+        end.transform.SetParent(parentObject.transform);
+        end.GetComponent<Renderer>().material.color = groundColor;
+        
+        end.transform.position = new Vector3(0, 0, startPosZ+prevRoadLength + prevPitLength +
                 end.transform.localScale.z * 5);
+        if (!isReplay)
+        {
+            endPosZ = prevRoadLength + prevPitLength +
+                end.transform.localScale.z * 10;
+        }
+        
+
+
     }
 }

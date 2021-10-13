@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using DG.Tweening;
 
 public class ObjectPit : MonoBehaviour
 {
-    public Material groundMat;
+    [SerializeField] private Door leftDoor;
+    [SerializeField] private Door rightDoor;
+    public Color groundColor;
     public int neededAmount = 10;
     public static event Action OnLevelFailed;
 
@@ -17,10 +20,9 @@ public class ObjectPit : MonoBehaviour
     private Renderer pitRenderer;
 
     private int amountInPit = 0;
-    private float pitDepth=1;
-    private float lerpSpeed = 5f;
     private bool isPit = true;
     private float waitTime = 3f;
+    private float ascendingTime = 1;
     
 
     
@@ -37,10 +39,12 @@ public class ObjectPit : MonoBehaviour
     private void PassThePit()
     {
         Destroy(neededAmountText);
-        pitRenderer.material.color = groundMat.color;
-        transform.position = Vector3.Lerp(transform.position, transform.position + Vector3.up * pitDepth, lerpSpeed);
+        pitRenderer.material.DOColor(groundColor, ascendingTime);
+        transform.DOMoveY(0, ascendingTime);
         playerMovement.canMove = true;
         isPit = false;
+        leftDoor.OpenDoor();
+        rightDoor.OpenDoor();
     }
     private void OnCollisionEnter(Collision collision)
     {
