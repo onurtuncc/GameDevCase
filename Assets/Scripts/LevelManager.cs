@@ -36,8 +36,7 @@ public class LevelManager : MonoBehaviour
                 Debug.Log("Random Level");
                 levelToReplay = levelToCreate;
                 levelToCreate = Random.Range(0, levels.Length);
-                Debug.Log("Level index to replay is"+levelToReplay);
-                Debug.Log("Level index to create is" + levelToCreate);
+                
 
 
             }
@@ -45,8 +44,7 @@ public class LevelManager : MonoBehaviour
             {
                 levelToCreate = currentLevel;
                 levelToReplay = levelToCreate - 1;
-                Debug.Log("Level index to replay is" + levelToReplay);
-                Debug.Log("Level index to create is" + levelToCreate);
+             
             }
             player.position = Vector3.zero;
             levelCreator.CreateLevel(levels[levelToCreate],isReplay);

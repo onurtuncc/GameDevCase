@@ -18,6 +18,7 @@ public class LevelCreator : MonoBehaviour
     private float prevRoadLength = 0;
     private float prevPitLength = 0;
     private float barrierLength = 0;
+    
 
     private float defaultPitLength = 10f;
     private float defaultCollectableMass = 0.5f;
@@ -34,6 +35,7 @@ public class LevelCreator : MonoBehaviour
         parentObject.transform.position += Vector3.forward * endPosZ;
         if (isReplay)
         {
+           
             startPosZ = 0;
             currentLevelPrefab = parentObject;
 
@@ -76,8 +78,9 @@ public class LevelCreator : MonoBehaviour
 
         }
         
-        CreateFinishLine(level.groundColor,parentObject,isReplay);
+        barrierLength= CreateFinishLine(level.groundColor,parentObject,isReplay);
         CreateSideBarriers(parentObject,isReplay);
+        
 
 
     }
@@ -85,15 +88,11 @@ public class LevelCreator : MonoBehaviour
 
     private void CreateSideBarriers(GameObject parentObject,bool isReplay)
     {
+       
         var sideBarrier = GameObject.CreatePrimitive(PrimitiveType.Cube);
         float posX = (roadHorizontalLength+ sideBarrier.transform.localScale.x)/2;
-        if (!isReplay)
-        {
-            barrierLength = endPosZ;
-        }
-        
         var scale = sideBarrier.transform.localScale;
-        sideBarrier.transform.localScale = new Vector3(scale.x, scale.y, barrierLength);
+        sideBarrier.transform.localScale = new Vector3(scale.x, scale.y+1, barrierLength);
         sideBarrier.transform.position = new Vector3(posX, sideBarrier.transform.position.y, barrierLength / 2+startPosZ);
         var sideBarrierLeft = Instantiate(sideBarrier);
         sideBarrierLeft.transform.position = new Vector3(-posX, sideBarrier.transform.position.y, barrierLength / 2 + startPosZ);
@@ -139,7 +138,7 @@ public class LevelCreator : MonoBehaviour
         collectableObject.tag = "Collectable";
 
     }
-    private void CreateFinishLine(Color groundColor,GameObject parentObject,bool isReplay)
+    private float CreateFinishLine(Color groundColor,GameObject parentObject,bool isReplay)
     {
         GameObject end = Instantiate(finishPlatform);
         end.transform.SetParent(parentObject.transform);
@@ -152,7 +151,8 @@ public class LevelCreator : MonoBehaviour
             endPosZ = prevRoadLength + prevPitLength +
                 end.transform.localScale.z * 10;
         }
-        
+        return prevRoadLength + prevPitLength +
+                end.transform.localScale.z * 10;
 
 
     }
