@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
@@ -20,8 +18,9 @@ public class LevelManager : MonoBehaviour
     }
     public void CreateFirst2Level()
     {
-        levelCreator.CreateLevel(levels[0], false);
-        levelCreator.CreateLevel(levels[1], false);
+        currentLevel = PlayerPrefs.GetInt("currentLevel");
+        levelCreator.CreateLevel(levels[currentLevel-1], false);
+        levelCreator.CreateLevel(levels[currentLevel], false);
     }
     
     public void PickLevelAndCreate(bool isReplay)

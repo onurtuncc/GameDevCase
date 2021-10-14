@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LevelCreator : MonoBehaviour
 {
 
     public GameObject downPlatform;
     public GameObject finishPlatform;
+    public GameObject rampPlatform;
 
     private GameObject plane;
     private GameObject pit;
@@ -78,7 +77,7 @@ public class LevelCreator : MonoBehaviour
 
         }
         
-        barrierLength= CreateFinishLine(level.groundColor,parentObject,isReplay);
+        barrierLength= CreateFinishLine(level.groundColor,parentObject,isReplay,level.levelEndType);
         CreateSideBarriers(parentObject,isReplay);
         
 
@@ -138,21 +137,36 @@ public class LevelCreator : MonoBehaviour
         collectableObject.tag = "Collectable";
 
     }
-    private float CreateFinishLine(Color groundColor,GameObject parentObject,bool isReplay)
+    private float CreateFinishLine(Color groundColor,GameObject parentObject,bool isReplay,Level.LevelEndType levelEndType)
     {
-        GameObject end = Instantiate(finishPlatform);
+        GameObject end;
+        float endLength = 0;
+        switch (levelEndType)
+        {
+            case (Level.LevelEndType.Ramp):
+                end = Instantiate(rampPlatform);
+                endLength = end.transform.GetChild(0).localScale.z * 10;
+                break;
+            default:
+                end = Instantiate(finishPlatform);
+                end.GetComponent<Renderer>().material.color = groundColor;
+                endLength = end.transform.localScale.z * 10;
+                break;
+        }
+        
+        
         end.transform.SetParent(parentObject.transform);
-        end.GetComponent<Renderer>().material.color = groundColor;
+        
         
         end.transform.position = new Vector3(0, 0, startPosZ+prevRoadLength + prevPitLength +
-                end.transform.localScale.z * 5);
+               endLength/2);
         if (!isReplay)
         {
             endPosZ = prevRoadLength + prevPitLength +
-                end.transform.localScale.z * 10;
+                endLength;
         }
         return prevRoadLength + prevPitLength +
-                end.transform.localScale.z * 10;
+               endLength;
 
 
     }

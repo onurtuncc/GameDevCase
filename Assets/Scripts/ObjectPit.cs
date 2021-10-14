@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
@@ -11,7 +10,7 @@ public class ObjectPit : MonoBehaviour
     [SerializeField] private Door rightDoor;
     public Color groundColor;
     public int neededAmount = 10;
-    public static event Action OnLevelFailed;
+    public static event Action<ObjectPit> OnLevelFailed=delegate { };
 
     private TMP_Text neededAmountText;
     private string textDisplay = "{0}/{1}";
@@ -36,15 +35,15 @@ public class ObjectPit : MonoBehaviour
         neededAmountText.text = string.Format(textDisplay,amountInPit, neededAmount);
     }
     
-    private void PassThePit()
+    public void PassThePit()
     {
         Destroy(neededAmountText);
         pitRenderer.material.DOColor(groundColor, ascendingTime);
         transform.DOMoveY(0, ascendingTime);
-        playerMovement.canMove = true;
         isPit = false;
         leftDoor.OpenDoor();
         rightDoor.OpenDoor();
+        playerMovement.canMove = true;
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -71,7 +70,7 @@ public class ObjectPit : MonoBehaviour
         else
         {
             Debug.Log("Level failed");
-            OnLevelFailed.Invoke();
+            OnLevelFailed.Invoke(this);
         }
 
     }

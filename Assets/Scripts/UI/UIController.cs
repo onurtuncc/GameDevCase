@@ -33,10 +33,12 @@ public class UIController : MonoBehaviour
         startPanel.PassToGamePlay();
 
     }
-    private void LevelFailedUI()
+    private void LevelFailedUI(ObjectPit objectPit)
     {
         startPanel.Hide();
+        failPanel.PitToContinue = objectPit;
         failPanel.Show();
+        
     }
     public void LevelBeginUI()
     {

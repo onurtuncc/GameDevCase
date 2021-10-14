@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class FailPanel : PopUpPanel
 {
+    private ObjectPit pitToContinue;
+    public ObjectPit PitToContinue {
+        get
+        {
+            return pitToContinue;
+        }
+        set
+        {
+            pitToContinue = value;
+        }
+    }
     public override void Show()
     {
         base.Show();
@@ -19,5 +30,11 @@ public class FailPanel : PopUpPanel
     public override void OpenedEvents()
     {
         base.OpenedEvents();
+    }
+    public void Continue()
+    {
+        if(pitToContinue!=null)
+        pitToContinue.PassThePit();
+        Hide();
     }
 }

@@ -135,7 +135,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2784713980803072241}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.19937325, y: -0.43, z: -8.369995}
+  m_LocalPosition: {x: 0, y: -0.43, z: -8.369995}
   m_LocalScale: {x: 10, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2784713981408690367}
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftDoor: {fileID: 3673049708618050095}
   rightDoor: {fileID: 8957530144294192842}
-  groundMat: {fileID: 2100000, guid: 5bcd988846d2b455fb95f55970fb47a3, type: 2}
+  groundColor: {r: 0, g: 0, b: 0, a: 0}
   neededAmount: 10
 --- !u!1 &2784713981408690366
 GameObject:

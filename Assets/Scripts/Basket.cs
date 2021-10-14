@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,6 +31,16 @@ public class Basket : MonoBehaviour
             PlayerPrefs.SetInt("currentLevel", PlayerPrefs.GetInt("currentLevel") + 1);
             OnLevelCompleted.Invoke();
         }
+        else if(other.tag == "RampStart")
+        {
+            playerMovement.canMove = false;
+            var rampController = other.GetComponent<RampController>();
+            rampController.RampState(playerMovement.transform);
+            
+            
+        }
+        
+
     }
     private void OnTriggerExit(Collider other)
     {
