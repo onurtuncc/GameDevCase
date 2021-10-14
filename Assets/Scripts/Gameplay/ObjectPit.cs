@@ -8,7 +8,9 @@ public class ObjectPit : MonoBehaviour
 {
     [SerializeField] private Door leftDoor;
     [SerializeField] private Door rightDoor;
-    public Color groundColor;
+
+    [HideInInspector] public Material groundMaterial;
+    [HideInInspector]public Color groundColor;
     public int neededAmount = 10;
     public static event Action<ObjectPit> OnLevelFailed=delegate { };
 
@@ -38,6 +40,7 @@ public class ObjectPit : MonoBehaviour
     public void PassThePit()
     {
         Destroy(neededAmountText);
+        pitRenderer.material = groundMaterial;
         pitRenderer.material.DOColor(groundColor, ascendingTime);
         transform.DOMoveY(0, ascendingTime);
         isPit = false;
