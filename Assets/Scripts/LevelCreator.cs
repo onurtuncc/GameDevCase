@@ -11,7 +11,8 @@ public class LevelCreator : MonoBehaviour
     #region Primitive objects
     private GameObject plane;
     private GameObject pit;
-
+    private Material levelMat;
+    private Color levelColor;
     private GameObject nextLevelPrefab;
     private GameObject currentLevelPrefab;
     #endregion
@@ -33,7 +34,8 @@ public class LevelCreator : MonoBehaviour
     #region Main method for creating level
     public void CreateLevel(Level level,bool isReplay)
     {
-        
+        levelMat = level.groundMat;
+        levelColor = level.groundColor;
         Destroy(currentLevelPrefab);
         var parentObject = new GameObject("Level Elements");
         parentObject.transform.position += Vector3.forward * endPosZ;
@@ -60,14 +62,16 @@ public class LevelCreator : MonoBehaviour
             //Setting up our road
             plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
             plane.transform.SetParent(parentObject.transform);
-            plane.GetComponent<Renderer>().material.color = level.groundColor;
+            SetMatAndColor(plane.GetComponent<Renderer>());
             //Setting up pit
             GameObject pitPlatform = Instantiate(downPlatform);
             pitPlatform.transform.SetParent(parentObject.transform);
             pit = pitPlatform.transform.GetChild(0).gameObject;
+            pit.GetComponent<Renderer>().material = level.pitMat;
             pit.GetComponent<Renderer>().material.color = level.pitColor;
             pit.GetComponent<ObjectPit>().neededAmount = level.objectPoolNeededAmount[i];
             pit.GetComponent<ObjectPit>().groundColor = level.groundColor;
+            pit.GetComponent<ObjectPit>().groundMaterial = level.groundMat;
             //Setting up positions and scales
             float roadLength = level.roads[i].roadLength;
             plane.transform.localScale = new Vector3(1, 1, roadLength / 10);
@@ -82,12 +86,17 @@ public class LevelCreator : MonoBehaviour
 
         }
         
-        barrierLength= CreateFinishLine(level.groundColor,parentObject,isReplay,level.levelEndType);
+        barrierLength= CreateFinishLine(level.groundColor,level.groundMat,parentObject,isReplay,level.levelEndType);
         CreateSideBarriers(parentObject,isReplay);
     }
     #endregion
 
-    #region Create Methods For Level Elements 
+    #region Create Methods For Level Elements
+    private void SetMatAndColor(Renderer go)
+    {
+        go.material = levelMat;
+        go.material.color = levelColor;
+    }
     private void CreateSideBarriers(GameObject parentObject,bool isReplay)
     {
        
@@ -140,24 +149,27 @@ public class LevelCreator : MonoBehaviour
         collectableObject.tag = "Collectable";
 
     }
-    private float CreateFinishLine(Color groundColor,GameObject parentObject,bool isReplay,Level.LevelEndType levelEndType)
+    private float CreateFinishLine(Color groundColor,Material groundMat,GameObject parentObject,bool isReplay,Level.LevelEndType levelEndType)
     {
         GameObject end;
-        float endLength = 0;
+        GameObject planeObject;
+        float endLength;
         switch (levelEndType)
         {
             case (Level.LevelEndType.Ramp):
                 end = Instantiate(rampPlatform);
-                endLength = end.transform.GetChild(0).localScale.z * 10;
+                planeObject = end.transform.GetChild(0).gameObject;
+                endLength = planeObject.transform.localScale.z * 10;
                 break;
             default:
                 end = Instantiate(finishPlatform);
-                end.GetComponent<Renderer>().material.color = groundColor;
+                planeObject = end;
                 endLength = end.transform.localScale.z * 10;
                 break;
         }
-        
-        
+        SetMatAndColor(planeObject.GetComponent<Renderer>());
+
+
         end.transform.SetParent(parentObject.transform);
         
         
