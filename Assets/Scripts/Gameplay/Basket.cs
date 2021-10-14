@@ -8,6 +8,7 @@ public class Basket : MonoBehaviour
     private float throwPower = 150f;
     private SwerveMovement playerMovement;
     public static event Action OnLevelCompleted;
+    public static event Action<RampController> OnRampEnter;
 
     private void Start()
     {
@@ -33,9 +34,11 @@ public class Basket : MonoBehaviour
         }
         else if(other.tag == "RampStart")
         {
+
             playerMovement.canMove = false;
             var rampController = other.GetComponent<RampController>();
             rampController.RampState(playerMovement.transform);
+            OnRampEnter.Invoke(rampController);
             
             
         }

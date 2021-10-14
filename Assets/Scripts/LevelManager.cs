@@ -13,7 +13,6 @@ public class LevelManager : MonoBehaviour
     {
         levelCreator = GetComponent<LevelCreator>();
         CreateFirst2Level();
-        
 
     }
     public void CreateFirst2Level()
@@ -35,9 +34,6 @@ public class LevelManager : MonoBehaviour
                 Debug.Log("Random Level");
                 levelToReplay = levelToCreate;
                 levelToCreate = Random.Range(0, levels.Length);
-                
-
-
             }
             else
             {
@@ -47,10 +43,6 @@ public class LevelManager : MonoBehaviour
             }
             player.position = Vector3.zero;
             levelCreator.CreateLevel(levels[levelToCreate],isReplay);
-            
-
-
-
         }
         else
         {
@@ -58,12 +50,6 @@ public class LevelManager : MonoBehaviour
             player.position = Vector3.zero;
             levelCreator.CreateLevel(levels[levelToReplay],isReplay);
         }
-        
-
-
-
     }
     
-
-
 }

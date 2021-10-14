@@ -12,6 +12,7 @@ public class Level : ScriptableObject
     public Road[] roads;
     public int[] objectPoolNeededAmount;
     public LevelEndType levelEndType;
+    
 }
 
 

@@ -9,6 +9,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private StartPanel startPanel;
     [SerializeField] private FailPanel failPanel;
     [SerializeField] private WinPanel winPanel;
+    [SerializeField] private RampPanel rampPanel;
 
 
 
@@ -17,12 +18,14 @@ public class UIController : MonoBehaviour
     {
         ObjectPit.OnLevelFailed += LevelFailedUI;
         Basket.OnLevelCompleted += LevelCompletedUI;
+        Basket.OnRampEnter += RampUI;
         
     }
     private void OnDestroy()
     {
         ObjectPit.OnLevelFailed -= LevelFailedUI;
         Basket.OnLevelCompleted -= LevelCompletedUI;
+        Basket.OnRampEnter -= RampUI;
     }
     private void Start()
     {
@@ -33,9 +36,15 @@ public class UIController : MonoBehaviour
         startPanel.PassToGamePlay();
 
     }
+    public void RampUI(RampController rampController)
+    {
+        rampPanel.Show();
+        rampPanel.SetFillController(rampController);
+    }
     private void LevelFailedUI(ObjectPit objectPit)
     {
         startPanel.Hide();
+        rampPanel.Hide();
         failPanel.PitToContinue = objectPit;
         failPanel.Show();
         
@@ -43,6 +52,7 @@ public class UIController : MonoBehaviour
     public void LevelBeginUI()
     {
         failPanel.Hide();
+        rampPanel.Hide();
         winPanel.Hide();
         startPanel.Show();
       
@@ -52,6 +62,7 @@ public class UIController : MonoBehaviour
     private void LevelCompletedUI()
     {
         startPanel.Hide();
+        rampPanel.Hide();
         winPanel.Show();
     }
     

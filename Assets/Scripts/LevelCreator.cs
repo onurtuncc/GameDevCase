@@ -2,30 +2,35 @@
 
 public class LevelCreator : MonoBehaviour
 {
-
+    #region Needed prefabs
     public GameObject downPlatform;
     public GameObject finishPlatform;
     public GameObject rampPlatform;
+    #endregion
 
+    #region Primitive objects
     private GameObject plane;
     private GameObject pit;
 
     private GameObject nextLevelPrefab;
     private GameObject currentLevelPrefab;
+    #endregion
 
+    #region Length values to calculate positions
     private float roadHorizontalLength = 10;
     private float prevRoadLength = 0;
     private float prevPitLength = 0;
     private float barrierLength = 0;
-    
+    #endregion
 
+    #region Default values
     private float defaultPitLength = 10f;
     private float defaultCollectableMass = 0.5f;
     private float endPosZ=0;
     private float startPosZ = 0;
+    #endregion
 
-    
-    
+    #region Main method for creating level
     public void CreateLevel(Level level,bool isReplay)
     {
         
@@ -79,12 +84,10 @@ public class LevelCreator : MonoBehaviour
         
         barrierLength= CreateFinishLine(level.groundColor,parentObject,isReplay,level.levelEndType);
         CreateSideBarriers(parentObject,isReplay);
-        
-
-
     }
-    
+    #endregion
 
+    #region Create Methods For Level Elements 
     private void CreateSideBarriers(GameObject parentObject,bool isReplay)
     {
        
@@ -170,4 +173,5 @@ public class LevelCreator : MonoBehaviour
 
 
     }
+    #endregion
 }
