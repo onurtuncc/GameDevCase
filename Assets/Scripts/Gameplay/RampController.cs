@@ -56,7 +56,9 @@ public class RampController : MonoBehaviour
             {
                 isInRampPhase = false;
                 Sequence throwSequence = DOTween.Sequence();
-                throwSequence.Append(playerTransform.DOJump(new Vector3(0, 0, rampTop.position.z + minThrowPoint + throwPoint), 20, 1, 5));
+                throwSequence.Append(playerTransform.DOJump(new Vector3(0, 0, rampTop.position.z + minThrowPoint + throwPoint), 20, 1, 4,false).
+                    SetEase(Ease.InCubic));
+                throwSequence.Join(playerTransform.DOShakeRotation(4f, 1, 2));
                 throwSequence.Append(playerTransform.DOShakeRotation(0.2f, 10, 2));
                 throwSequence.Append(playerTransform.DORotate(Vector3.zero, 1f));
                 throwSequence.Append(playerTransform.DOMoveZ(finishLine.position.z - 1, 2f));
