@@ -17,9 +17,14 @@ public class LevelManager : MonoBehaviour
     }
     public void CreateFirst2Level()
     {
-        currentLevel = PlayerPrefs.GetInt("currentLevel");
-        levelCreator.CreateLevel(levels[currentLevel-1], false);
-        levelCreator.CreateLevel(levels[currentLevel], false);
+      
+        
+        levelToReplay = PlayerPrefs.GetInt("lastLevelIndex",0);
+        levelToCreate = PlayerPrefs.GetInt("nextLevelIndex",1);
+       
+        levelCreator.CreateLevel(levels[levelToReplay], false);
+        levelCreator.CreateLevel(levels[levelToCreate], false);
+ 
     }
     
     public void PickLevelAndCreate(bool isReplay)
@@ -31,15 +36,16 @@ public class LevelManager : MonoBehaviour
             
             if (currentLevel >= levels.Length)
             {
-                Debug.Log("Random Level");
+                //Debug.Log("Random Level");
                 levelToReplay = levelToCreate;
                 levelToCreate = Random.Range(0, levels.Length);
+               
             }
             else
             {
                 levelToCreate = currentLevel;
                 levelToReplay = levelToCreate - 1;
-             
+
             }
             player.position = Vector3.zero;
             levelCreator.CreateLevel(levels[levelToCreate],isReplay);
@@ -50,6 +56,8 @@ public class LevelManager : MonoBehaviour
             player.position = Vector3.zero;
             levelCreator.CreateLevel(levels[levelToReplay],isReplay);
         }
+        PlayerPrefs.SetInt("lastLevelIndex", levelToReplay);
+        PlayerPrefs.SetInt("nextLevelIndex", levelToCreate);
     }
     
 }

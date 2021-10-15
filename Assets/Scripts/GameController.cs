@@ -17,10 +17,7 @@ public class GameController : MonoBehaviour
     {
         StartGame(false);
     }
-    public void ContinueButton()
-    {
-
-    }
+    
     private void StartGameplay()
     {
         movement.canMove = true;

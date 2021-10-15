@@ -1854,8 +1854,7 @@ MonoBehaviour:
   levels:
   - {fileID: 11400000, guid: 331d57c16cc074b49baff8b2532ff640, type: 2}
   - {fileID: 11400000, guid: 8844730b067d347178c5be0f013ea67c, type: 2}
-  - {fileID: 11400000, guid: 331d57c16cc074b49baff8b2532ff640, type: 2}
-  - {fileID: 11400000, guid: 8844730b067d347178c5be0f013ea67c, type: 2}
+  - {fileID: 11400000, guid: ff89eaca6c120425ebc4e3616f980ebf, type: 2}
 --- !u!4 &1365294137
 Transform:
   m_ObjectHideFlags: 0

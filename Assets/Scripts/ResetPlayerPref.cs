@@ -6,6 +6,8 @@ public class ResetPlayerPref : MonoBehaviour
     void Awake()
     {
         PlayerPrefs.SetInt("currentLevel", 1);
+        PlayerPrefs.SetInt("lastLevelIndex", 0);
+        PlayerPrefs.SetInt("nextLevelIndex", 1);
     }
 
     
