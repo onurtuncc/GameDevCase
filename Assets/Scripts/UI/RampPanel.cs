@@ -34,8 +34,8 @@ public class RampPanel : PopUpPanel
     private void Update()
     {
         if(rc!=null)
-        fillImage.fillAmount = rc.fillAmount;
-        percentageText.text = "%"+(rc.fillAmount*100).ToString();
+        fillImage.fillAmount = rc.FillAmount;
+        percentageText.text = "%"+(rc.FillAmount*100).ToString();
 
     }
 }

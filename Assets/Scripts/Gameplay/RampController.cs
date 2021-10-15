@@ -13,7 +13,7 @@ public class RampController : MonoBehaviour
     private float minThrowPoint = 10f;
     private float maxThrowPoint = 50f;
     private bool isInRampPhase=false;
-    [HideInInspector] public float fillAmount=0;
+    [HideInInspector] public float FillAmount=0;
     private float throwPoint = 0;
     private float pointPerClick = 2f;
     Sequence rampSequence;
@@ -48,7 +48,7 @@ public class RampController : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 throwPoint+=pointPerClick;
-                fillAmount = throwPoint / maxThrowPoint;
+                FillAmount = throwPoint / maxThrowPoint;
                 //TapBar.fillAmount = throwPoint / maxThrowPoint;
                 Debug.Log(throwPoint);
             }

@@ -10,7 +10,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private FailPanel failPanel;
     [SerializeField] private WinPanel winPanel;
     [SerializeField] private RampPanel rampPanel;
-
+    
 
 
 
@@ -30,6 +30,7 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         startPanel.Show();
+        
     }
     public void StartGameplayUI()
     {
