@@ -8,7 +8,7 @@ public class RampPanel : PopUpPanel
 {
     [SerializeField]private Image fillImage;
     [SerializeField]private TMP_Text percentageText;
-
+    public Text goldText;
     private RampController rc;
     public override void Show()
     {
@@ -17,6 +17,7 @@ public class RampPanel : PopUpPanel
     public override void Hide()
     {
         base.Hide();
+        goldText.text = "";
     }
     public override void ClosedEvents()
     {
@@ -30,6 +31,7 @@ public class RampPanel : PopUpPanel
     public void SetFillController(RampController rampController)
     {
         rc = rampController;
+        rampController.popUpGoldText = goldText;
     }
     private void Update()
     {

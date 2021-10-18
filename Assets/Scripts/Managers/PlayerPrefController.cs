@@ -9,6 +9,7 @@ public class PlayerPrefController : MonoBehaviour
     private readonly string lastLevelKey = "lastLevelIndex";
     private readonly string nextLevelKey = "nextLevelIndex";
     private readonly string currentLevelKey = "currentLevel";
+    private readonly string totalGoldKey = "totalGold";
 
     private void Awake()
     {
@@ -18,6 +19,14 @@ public class PlayerPrefController : MonoBehaviour
     {
         PlayerPrefs.SetInt(lastLevelKey, lastLevelIndex);
         PlayerPrefs.SetInt(nextLevelKey, nextLevelIndex);
+    }
+    public void AddGold(int amount)
+    {
+        PlayerPrefs.SetInt(totalGoldKey, GetTotalGold() + amount);
+    }
+    public int GetTotalGold()
+    {
+        return PlayerPrefs.GetInt(totalGoldKey, 0);
     }
     public int GetCurrentLevelData()
     {

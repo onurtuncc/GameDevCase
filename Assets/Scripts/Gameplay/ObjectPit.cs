@@ -13,7 +13,7 @@ public class ObjectPit : MonoBehaviour
     [HideInInspector] public Material groundMaterial;
     [HideInInspector]public Color groundColor;
     public int neededAmount = 10;
-    public static event Action<ObjectPit> OnLevelFailed=delegate { };
+    
 
     private TMP_Text neededAmountText;
     private string textDisplay = "{0}/{1}";
@@ -25,9 +25,9 @@ public class ObjectPit : MonoBehaviour
     private bool isPit = true;
     private float waitTime = 3f;
     private float ascendingTime = 1;
-    
 
-    
+    public static event Action<ObjectPit> OnLevelFailed = delegate { };
+
     // Start is called before the first frame update
     void Start()
     {

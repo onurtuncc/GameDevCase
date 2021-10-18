@@ -178,11 +178,7 @@ public class LevelCreator : MonoBehaviour
         
 
     }
-    private GameObject SpawnObject(GameObject gameObjectToSpawn, GameObject parentObject)
-    {
-        
-        return LeanPool.Spawn(gameObjectToSpawn,parentObject.transform);
-    }
+    
     private float CreateFinishLine(Color groundColor,Material groundMat,GameObject parentObject,bool isReplay,Level.LevelEndType levelEndType)
     {
         GameObject end;
@@ -220,4 +216,9 @@ public class LevelCreator : MonoBehaviour
 
     }
     #endregion
+
+    private GameObject SpawnObject(GameObject gameObjectToSpawn, GameObject parentObject)
+    {
+        return LeanPool.Spawn(gameObjectToSpawn, parentObject.transform);
+    }
 }

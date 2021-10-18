@@ -5,15 +5,12 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
 
-    private ScoreManager instance;
-    public ScoreManager Instance
+    private static ScoreManager instance;
+    public static ScoreManager ScoreManagerInstance
     {
         get
         {
-            if (instance == null)
-            {
-                instance = new ScoreManager();
-            }
+            
             return instance;
         }
         set
@@ -29,7 +26,7 @@ public class ScoreManager : MonoBehaviour
     {
         if (instance == null)
         {
-            Instance = this;
+            ScoreManagerInstance = this;
         }
         score = 0;
     }

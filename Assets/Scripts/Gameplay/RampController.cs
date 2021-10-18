@@ -7,6 +7,8 @@ public class RampController : MonoBehaviour
     [SerializeField]private Transform rampTop;
     [SerializeField] private Transform rampStart;
     [SerializeField] private Transform finishLine;
+
+    [HideInInspector] public Text popUpGoldText;
     //[HideInInspector]public Image TapBar;
     private float rampClimbTime = 2f;
     private float flightTime = 4f;
@@ -64,6 +66,7 @@ public class RampController : MonoBehaviour
                 throwSequence.Join(playerTransform.DORotate(Vector3.zero, flightTime+1));
                 throwSequence.Append(playerTransform.DOShakeRotation(0.2f, 10, 2));
                 throwSequence.Join(playerTransform.DORotate(Vector3.zero, 1f));
+                throwSequence.Append(popUpGoldText.DOText("+"+CalculateGold(),1f));
                 throwSequence.Append(playerTransform.DOMoveZ(finishLine.position.z - 1, 2f));
              
                 
@@ -71,5 +74,12 @@ public class RampController : MonoBehaviour
             
         }
     }
+    public int CalculateGold()
+    {
+        int levelScore = 300 + (int)Mathf.Ceil(throwPoint / 5)*20;
+        ScoreManager.ScoreManagerInstance.Score = levelScore;
+        return levelScore;
+    }
+    
 
 }

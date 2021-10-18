@@ -7,8 +7,10 @@ public class Basket : MonoBehaviour
     private List<Rigidbody> collectedRb = new List<Rigidbody>();
     private float throwPower = 150f;
     private SwerveMovement playerMovement;
+
     public static event Action OnLevelCompleted;
-    public static event Action<RampController> OnRampEnter;
+    public static event Action<RampController> OnRampEnter = delegate { };
+
 
     private void Start()
     {

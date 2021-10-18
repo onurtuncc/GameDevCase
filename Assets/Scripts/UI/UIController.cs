@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -10,7 +10,6 @@ public class UIController : MonoBehaviour
     [SerializeField] private FailPanel failPanel;
     [SerializeField] private WinPanel winPanel;
     [SerializeField] private RampPanel rampPanel;
-    
 
 
 
@@ -46,7 +45,7 @@ public class UIController : MonoBehaviour
     {
         startPanel.Hide();
         rampPanel.Hide();
-        failPanel.PitToContinue = objectPit;
+        failPanel.PitToContinue=objectPit;
         failPanel.Show();
         
     }
