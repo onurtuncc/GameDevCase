@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using DG.Tweening;
+using Lean.Pool;
 
 public class ObjectPit : MonoBehaviour
 {
@@ -53,7 +54,9 @@ public class ObjectPit : MonoBehaviour
         if (!isPit) return;
         if (collision.gameObject.tag == "Collectable")
         {
-            collision.gameObject.SetActive(false);
+            
+            LeanPool.Despawn(collision.gameObject);
+            
             amountInPit++;
             neededAmountText.text = string.Format(textDisplay, amountInPit, neededAmount);
             

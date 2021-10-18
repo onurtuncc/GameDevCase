@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61015d9fbb184b6492cf44431bb42d5, type: 3}
   m_Name: Level 3
   m_EditorClassIdentifier: 
-  level: 1
+  level: 3
   groundMat: {fileID: 2100000, guid: 5bcd988846d2b455fb95f55970fb47a3, type: 2}
   pitMat: {fileID: 2100000, guid: 01f638222a61241ab8979a8d9f490d13, type: 2}
   groundColor: {r: 0.08552865, g: 0.5849056, b: 0.3907922, a: 0}

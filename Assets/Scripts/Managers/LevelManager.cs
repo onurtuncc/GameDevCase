@@ -17,10 +17,10 @@ public class LevelManager : MonoBehaviour
     }
     public void CreateFirst2Level()
     {
-      
-        
-        levelToReplay = PlayerPrefs.GetInt("lastLevelIndex",0);
-        levelToCreate = PlayerPrefs.GetInt("nextLevelIndex",1);
+
+        var createData = PlayerPrefController.Instance.GetLevelCreateData();
+        levelToReplay = createData[0];
+        levelToCreate = createData[1];
        
         levelCreator.CreateLevel(levels[levelToReplay], false);
         levelCreator.CreateLevel(levels[levelToCreate], false);
@@ -56,8 +56,7 @@ public class LevelManager : MonoBehaviour
             player.position = Vector3.zero;
             levelCreator.CreateLevel(levels[levelToReplay],isReplay);
         }
-        PlayerPrefs.SetInt("lastLevelIndex", levelToReplay);
-        PlayerPrefs.SetInt("nextLevelIndex", levelToCreate);
+        PlayerPrefController.Instance.SaveLevelData(levelToReplay, levelToCreate);
     }
     
 }

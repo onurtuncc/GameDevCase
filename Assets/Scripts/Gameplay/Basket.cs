@@ -29,7 +29,7 @@ public class Basket : MonoBehaviour
         }
         else if (other.tag == "Finish")
         {
-            PlayerPrefs.SetInt("currentLevel", PlayerPrefs.GetInt("currentLevel") + 1);
+            PlayerPrefController.Instance.PassNextLevel();
             OnLevelCompleted.Invoke();
         }
         else if(other.tag == "RampStart")

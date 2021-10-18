@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Lean.Pool;
 
 public class LevelCreator : MonoBehaviour
 {
@@ -6,10 +7,15 @@ public class LevelCreator : MonoBehaviour
     public GameObject downPlatform;
     public GameObject finishPlatform;
     public GameObject rampPlatform;
+    public GameObject defaultPlane;
+    public GameObject defaultCube;
+    public GameObject defaultCylinder;
+    public GameObject defaultSphere;
+    public GameObject barrierCube;
     #endregion
 
     #region Primitive objects
-    private GameObject plane;
+
     private GameObject pit;
     private Material levelMat;
     private Color levelColor;
@@ -34,20 +40,32 @@ public class LevelCreator : MonoBehaviour
     #region Main method for creating level
     public void CreateLevel(Level level,bool isReplay)
     {
+       
         levelMat = level.groundMat;
         levelColor = level.groundColor;
+        if (currentLevelPrefab != null)
+        {
+            foreach (ObjectPool go in currentLevelPrefab.GetComponentsInChildren<ObjectPool>())
+            {
+                
+                LeanPool.Despawn(go);
+            }
+            
+        }
+        
         Destroy(currentLevelPrefab);
         var parentObject = new GameObject("Level Elements");
         parentObject.transform.position += Vector3.forward * endPosZ;
         if (isReplay)
         {
-           
+            
             startPosZ = 0;
             currentLevelPrefab = parentObject;
 
         }
         else
         {
+            
             startPosZ = endPosZ;
             currentLevelPrefab = nextLevelPrefab;
             nextLevelPrefab = parentObject;
@@ -60,12 +78,14 @@ public class LevelCreator : MonoBehaviour
         for (int i = 0; i < level.roads.Length; i++)
         {
             //Setting up our road
-            plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
-            plane.transform.SetParent(parentObject.transform);
+            //plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
+            
+            var plane = SpawnObject(defaultPlane, parentObject);
+            //if (!addToPool) LeanPool.Detach(plane.transform);
             SetMatAndColor(plane.GetComponent<Renderer>());
             //Setting up pit
-            GameObject pitPlatform = Instantiate(downPlatform);
-            pitPlatform.transform.SetParent(parentObject.transform);
+            GameObject pitPlatform = Instantiate(downPlatform, parentObject.transform);
+           
             pit = pitPlatform.transform.GetChild(0).gameObject;
             pit.GetComponent<Renderer>().material = level.pitMat;
             pit.GetComponent<Renderer>().material.color = level.pitColor;
@@ -100,15 +120,14 @@ public class LevelCreator : MonoBehaviour
     private void CreateSideBarriers(GameObject parentObject,bool isReplay)
     {
        
-        var sideBarrier = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        var sideBarrier = SpawnObject(barrierCube, parentObject);
         float posX = (roadHorizontalLength+ sideBarrier.transform.localScale.x)/2;
         var scale = sideBarrier.transform.localScale;
         sideBarrier.transform.localScale = new Vector3(scale.x, scale.y+1, barrierLength);
         sideBarrier.transform.position = new Vector3(posX, sideBarrier.transform.position.y, barrierLength / 2+startPosZ);
-        var sideBarrierLeft = Instantiate(sideBarrier);
+        var sideBarrierLeft = SpawnObject(barrierCube, parentObject);
         sideBarrierLeft.transform.position = new Vector3(-posX, sideBarrier.transform.position.y, barrierLength / 2 + startPosZ);
-        sideBarrier.transform.SetParent(parentObject.transform);
-        sideBarrierLeft.transform.SetParent(parentObject.transform);
+        sideBarrierLeft.transform.localScale = new Vector3(scale.x, scale.y + 1, barrierLength);
 
 
 
@@ -124,30 +143,45 @@ public class LevelCreator : MonoBehaviour
             switch (collectable.objectType)
             {
                 case (Collectableobject.ObjectType.Cube):
-                    collectableElement = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    collectableElement = SpawnObject(defaultCube, parentObject);
                     break;
                 case (Collectableobject.ObjectType.Cylinder):
-                    collectableElement = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+                    collectableElement = SpawnObject(defaultCylinder, parentObject);
                     break;
                 case (Collectableobject.ObjectType.Sphere):
-                    collectableElement = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    collectableElement = SpawnObject(defaultSphere, parentObject);
                     break;
                 default:
-                    collectableElement = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    collectableElement = SpawnObject(defaultSphere, parentObject);
                     break;
             }
+            
+            collectableElement.transform.rotation = Quaternion.Euler(0, 0, 0);
             collectableElement.transform.localScale *= collectable.size;
             collectableElement.transform.position = collectable.spawnPoint + Vector3.up * collectable.size + Vector3.forward* startPosZ;
-            collectableElement.transform.SetParent(parentObject.transform);
-            AddCollectableFeatures(collectableElement);
+            //collectableElement.GetComponent<Rigidbody>().isKinematic = false;
+            //AddCollectableFeatures(collectableElement);
         }
     }
     private void AddCollectableFeatures(GameObject collectableObject)
     {
-        Rigidbody rb = collectableObject.AddComponent<Rigidbody>();
-        rb.mass = defaultCollectableMass;
-        collectableObject.tag = "Collectable";
+        if (collectableObject.activeSelf == true)
+        {
+            if (collectableObject.GetComponent<Rigidbody>() == null)
+            {
+                Rigidbody rb = collectableObject.AddComponent<Rigidbody>();
+                rb.mass = defaultCollectableMass;
+                collectableObject.tag = "Collectable";
+            }
+            
+        }
+        
 
+    }
+    private GameObject SpawnObject(GameObject gameObjectToSpawn, GameObject parentObject)
+    {
+        
+        return LeanPool.Spawn(gameObjectToSpawn,parentObject.transform);
     }
     private float CreateFinishLine(Color groundColor,Material groundMat,GameObject parentObject,bool isReplay,Level.LevelEndType levelEndType)
     {

@@ -9,6 +9,7 @@ public class RampController : MonoBehaviour
     [SerializeField] private Transform finishLine;
     //[HideInInspector]public Image TapBar;
     private float rampClimbTime = 2f;
+    private float flightTime = 4f;
     private float toRampTime = 2f;
     private float minThrowPoint = 10f;
     private float maxThrowPoint = 50f;
@@ -56,11 +57,13 @@ public class RampController : MonoBehaviour
             {
                 isInRampPhase = false;
                 Sequence throwSequence = DOTween.Sequence();
-                throwSequence.Append(playerTransform.DOJump(new Vector3(0, 0, rampTop.position.z + minThrowPoint + throwPoint), 20, 1, 4,false).
-                    SetEase(Ease.InCubic));
-                throwSequence.Join(playerTransform.DOShakeRotation(4f, 1, 2));
+                throwSequence.Append(playerTransform.DOJump(new Vector3(0, 0, rampTop.position.z + minThrowPoint + throwPoint), 20, 1, flightTime,false).
+                    SetEase(Ease.OutCubic));
+                
+                throwSequence.Join(playerTransform.DOShakeRotation(flightTime, 10, 5));
+                throwSequence.Join(playerTransform.DORotate(Vector3.zero, flightTime+1));
                 throwSequence.Append(playerTransform.DOShakeRotation(0.2f, 10, 2));
-                throwSequence.Append(playerTransform.DORotate(Vector3.zero, 1f));
+                throwSequence.Join(playerTransform.DORotate(Vector3.zero, 1f));
                 throwSequence.Append(playerTransform.DOMoveZ(finishLine.position.z - 1, 2f));
              
                 

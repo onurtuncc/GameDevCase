@@ -46,7 +46,7 @@ public class StartPanel : PopUpPanel
     }
     private void SetLevelText()
     {
-        currentLevel = PlayerPrefs.GetInt("currentLevel", 1);
+        currentLevel = PlayerPrefController.Instance.GetCurrentLevelData();
         levelText.text = currentLevel.ToString();
         nextLevelText.text = (currentLevel + 1).ToString();
     }
