@@ -52,15 +52,15 @@ public class RampController : MonoBehaviour
             {
                 throwPoint+=pointPerClick;
                 FillAmount = throwPoint / maxThrowPoint;
-                //TapBar.fillAmount = throwPoint / maxThrowPoint;
-                Debug.Log(throwPoint);
+                
             }
             if (!rampSequence.IsActive())
             {
                 isInRampPhase = false;
+                if (throwPoint > maxThrowPoint) throwPoint = maxThrowPoint;
                 Sequence throwSequence = DOTween.Sequence();
                 throwSequence.Append(playerTransform.DOJump(new Vector3(0, 0, rampTop.position.z + minThrowPoint + throwPoint), 20, 1, flightTime,false).
-                    SetEase(Ease.OutCubic));
+                    SetEase(Ease.InOutQuart));
                 
                 throwSequence.Join(playerTransform.DOShakeRotation(flightTime, 10, 5));
                 throwSequence.Join(playerTransform.DORotate(Vector3.zero, flightTime+1));
@@ -78,6 +78,7 @@ public class RampController : MonoBehaviour
     {
         int levelScore = 300 + (int)Mathf.Ceil(throwPoint / 5)*20;
         ScoreManager.ScoreManagerInstance.Score = levelScore;
+        PlayerPrefController.Instance.AddGold(levelScore);
         return levelScore;
     }
     

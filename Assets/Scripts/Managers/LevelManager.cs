@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour
     
     public void PickLevelAndCreate(bool isReplay)
     {
-        currentLevel = PlayerPrefs.GetInt("currentLevel");
+        currentLevel = PlayerPrefController.Instance.GetCurrentLevelData();
         Debug.Log("Current level is:" + currentLevel);
         if (!isReplay)
         {
