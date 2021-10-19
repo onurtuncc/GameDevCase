@@ -24,6 +24,7 @@ public class SwerveMovement : MonoBehaviour
             float swerveAmount = Time.deltaTime * swerveSpeed * _swerveInputSystem.MoveFactorX;
             swerveAmount = Mathf.Clamp(swerveAmount, -maxSwerveAmount, maxSwerveAmount);
             rb.velocity = new Vector3(swerveAmount * xSpeed, 0, forwardSpeed);
+           
         }
         
         else rb.velocity = Vector3.zero;
