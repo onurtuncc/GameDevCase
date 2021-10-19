@@ -54,4 +54,4 @@ MonoBehaviour:
       size: 0.5
       spawnPoint: {x: 2.5, y: 0, z: 20}
   objectPoolNeededAmount: 0b000000
-  levelEndType: 0
+  levelEndType: 1

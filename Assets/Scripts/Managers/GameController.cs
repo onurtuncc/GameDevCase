@@ -5,6 +5,7 @@ public class GameController : MonoBehaviour
     [SerializeField]SwerveMovement movement;
     [SerializeField] UIController uiController;
     [SerializeField] LevelManager levelController;
+    [SerializeField] CameraManager cameraManager;
     public void StartGameButton()
     {
         StartGameplay();
@@ -26,7 +27,7 @@ public class GameController : MonoBehaviour
 
     private void StartGame(bool isReplay)
     {
-        //Transition effect
+        cameraManager.GetToStart();
         movement.canMove = false;
         uiController.LevelBeginUI();
         levelController.PickLevelAndCreate(isReplay);
