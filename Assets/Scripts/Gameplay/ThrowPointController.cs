@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrowPointController : MonoBehaviour
-{
-    [SerializeField] ObjectPit objectPit;
 
-    public void ActivateObjectPit()
+    public class ThrowPointController : MonoBehaviour
     {
-        objectPit.StartCoroutine(objectPit.CheckPitStatus());
+        [SerializeField] ObjectPit objectPit;
+
+        public void ActivateObjectPit()
+        {
+            objectPit.StartCoroutine(objectPit.CheckPitStatus());
+        }
     }
-}
