@@ -11,4 +11,11 @@ public class Collectableobject
     public float size;
     //public bool isExplosion;
     public Vector3 spawnPoint;
+
+    public Collectableobject(ObjectType type,float size)
+    {
+        this.objectType = type;
+        this.size = size;
+        this.spawnPoint = Vector3.zero;
+    }
 }
