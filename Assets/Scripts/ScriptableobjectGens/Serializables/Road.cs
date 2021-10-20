@@ -7,11 +7,10 @@ using UnityEngine;
 public class Road
 {
     public float roadLength;
-    public Collectableobject[] collectableObjectsOnRoad;
 
-    public Road(float roadLength,Collectableobject[] collectableobjects)
+    public Road(float roadLength)
     {
         this.roadLength = roadLength;
-        this.collectableObjectsOnRoad = collectableobjects;
+        
     }
 }
