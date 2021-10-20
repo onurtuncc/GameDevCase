@@ -10,6 +10,7 @@ public class Level : ScriptableObject
     public Color groundColor;
     public Color pitColor;
     public Road[] roads;
+    public Collectableobject[] collectableobjects;
     public int[] objectPoolNeededAmount;
     public LevelEndType levelEndType;
     

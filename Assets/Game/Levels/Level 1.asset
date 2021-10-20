@@ -19,74 +19,22 @@ MonoBehaviour:
   pitColor: {r: 0.27003995, g: 0.23300104, b: 0.6415094, a: 0}
   roads:
   - roadLength: 30
-    collectableObjectsOnRoad:
-    - objectType: 0
-      size: 0.5
-      spawnPoint: {x: 0, y: 0, z: 10}
-    - objectType: 0
-      size: 0.5
-      spawnPoint: {x: 0, y: 0, z: 11}
-    - objectType: 0
-      size: 0.5
-      spawnPoint: {x: 0, y: 0, z: 12}
-    - objectType: 0
-      size: 0.5
-      spawnPoint: {x: 0, y: 0, z: 13}
-    - objectType: 0
-      size: 0.5
-      spawnPoint: {x: 0, y: 0, z: 14}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 3, y: 0, z: 18}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 2.5, y: 0, z: 18}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 3, y: 0, z: 19}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 2.5, y: 0, z: 19}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 3, y: 0, z: 20}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 2.5, y: 0, z: 20}
   - roadLength: 30
-    collectableObjectsOnRoad:
-    - objectType: 0
-      size: 0.5
-      spawnPoint: {x: 0, y: 0, z: 45}
-    - objectType: 0
-      size: 0.5
-      spawnPoint: {x: 0, y: 0, z: 46}
-    - objectType: 0
-      size: 0.5
-      spawnPoint: {x: 0, y: 0, z: 47}
-    - objectType: 0
-      size: 0.5
-      spawnPoint: {x: 0, y: 0, z: 48}
-    - objectType: 0
-      size: 0.5
-      spawnPoint: {x: 0, y: 0, z: 49}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 3, y: 0, z: 53}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 2.5, y: 0, z: 53}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 3, y: 0, z: 54}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 2.5, y: 0, z: 54}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 3, y: 0, z: 55}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 2.5, y: 0, z: 55}
+  collectableobjects:
+  - objectType: 0
+    size: 0.5
+    spawnPoint: {x: 0, y: 0, z: 10}
+  - objectType: 0
+    size: 0.5
+    spawnPoint: {x: 0, y: 0, z: 11}
+  - objectType: 0
+    size: 0.5
+    spawnPoint: {x: 0, y: 0, z: 12}
+  - objectType: 0
+    size: 0.5
+    spawnPoint: {x: 0, y: 0, z: 13}
+  - objectType: 0
+    size: 0.5
+    spawnPoint: {x: 0, y: 0, z: 14}
   objectPoolNeededAmount: 050000000a000000
   levelEndType: 1

@@ -100,13 +100,13 @@ using Lean.Pool;
                     roadLength / 2);
                 pitPlatform.transform.position = new Vector3(0, 0, startPosZ + roadLength + prevRoadLength + prevPitLength + defaultPitLength / 2);
                 //Creating objects on the road
-                CreateObjectsOnRoad(level.roads[i], parentObject);
+                
                 //Updating values
                 prevRoadLength += roadLength;
                 prevPitLength += defaultPitLength;
 
             }
-
+            CreateObjectsOnRoad(level, parentObject);
             barrierLength = CreateFinishLine(level.groundColor, level.groundMat, parentObject, isReplay, level.levelEndType);
             CreateSideBarriers(parentObject, isReplay);
         }
@@ -134,9 +134,9 @@ using Lean.Pool;
 
         }
 
-        private void CreateObjectsOnRoad(Road road, GameObject parentObject)
+        private void CreateObjectsOnRoad(Level level, GameObject parentObject)
         {
-            var collectables = road.collectableObjectsOnRoad;
+            var collectables = level.collectableobjects;
             GameObject collectableElement;
             for (int i = 0; i < collectables.Length; i++)
             {
