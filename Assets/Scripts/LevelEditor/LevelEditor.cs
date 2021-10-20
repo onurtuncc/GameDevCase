@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor;
 
 public class LevelEditor : MonoBehaviour
 {
@@ -120,7 +121,12 @@ public class LevelEditor : MonoBehaviour
         level.roads = roads.ToArray();
         level.objectPoolNeededAmount = neededAmounts.ToArray();
         level.collectableobjects = collectables.ToArray();
-        
+        AssetDatabase.CreateAsset(level, "Assets/Game/Levels/" + level.name + ".asset");
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+        EditorUtility.FocusProjectWindow();
+        Selection.activeObject = level;
+
 
 
     }
