@@ -28,14 +28,35 @@ public class LevelEditor : MonoBehaviour
     private List<Collectableobject> collectables = new List<Collectableobject>();
     //Last object type: 0-Road 1- Collectable 2-Pit
     private List<int> lastobjectType = new List<int>();
-    #endregion
+    private Material[] groundMats;
+    private Material[] pitMats;
+
 
     #region Variables
+    private Material groundMat;
+    private Material pitMat;
+    private int matIndex = 0;
+    private int pitmatIndex = 0;
+    #endregion
     private float endPosZ=0;
     private float pitLength = 10f;
     private Transform selected;
+    private Vector3 createPos=Vector3.zero;
     [SerializeField] Level level;
     #endregion
+
+    #region MonoBehaviour Methods
+
+    private void Awake()
+    {
+        
+        groundMats = Resources.LoadAll<Material>("Game/GroundMaterials/");
+        pitMats = Resources.LoadAll<Material>("Game/PitMaterials/");
+        groundMat = groundMats[matIndex];
+        pitMat = pitMats[pitmatIndex];
+        
+    }
+
 
     private void Update()
     {
@@ -43,9 +64,36 @@ public class LevelEditor : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(ray,out hit))
         {
-            if (Input.GetMouseButtonDown(0)&& hit.transform.tag=="Collectable") selected = hit.transform;
+            if (Input.GetMouseButtonDown(0) && hit.transform.tag == "Collectable")
+            {
+                selected = hit.transform;
+                createPos = selected.position+Vector3.forward;
+            }
         }
     }
+
+    #endregion
+
+    #region Material Methods
+    public void ChangeGroundMat()
+    {
+        matIndex++;
+        if (matIndex >= groundMats.Length)
+        {
+            matIndex = 0;
+        }
+        groundMat = groundMats[matIndex];
+    }
+    public void ChangePitMat()
+    {
+        pitmatIndex++;
+        if (pitmatIndex >= pitMats.Length)
+        {
+            pitmatIndex = 0;
+        }
+        pitMat = pitMats[pitmatIndex];
+    }
+    #endregion
 
     #region Create Methods
     public void CreateCollectable(int objectType)
@@ -95,6 +143,7 @@ public class LevelEditor : MonoBehaviour
     private void AddCollectableFeature(GameObject go)
     {
         go.tag = "Collectable";
+        go.transform.position = createPos;
         go.AddComponent<LeanDragTranslate>();
         go.AddComponent<MoveObject>();
         go.GetComponent<Renderer>().material.color = Color.red;
@@ -123,6 +172,7 @@ public class LevelEditor : MonoBehaviour
     private GameObject CreateRoadObject(float roadLength)
     {
         var roadObject = GameObject.CreatePrimitive(PrimitiveType.Plane);
+        roadObject.GetComponent<Renderer>().material = groundMat;
         roadObject.transform.localScale = new Vector3(1, 1, roadLength / 10);
         roadObject.transform.position = new Vector3(0, 0, roadLength / 2 + endPosZ);
         Road road = new Road(roadLength);
@@ -152,6 +202,7 @@ public class LevelEditor : MonoBehaviour
     {
         var pitPlatform = Instantiate(pitPlatformPrefab);
         var pit = pitPlatform.transform.GetChild(0).GetComponent<ObjectPit>();
+        pit.GetComponent<Renderer>().material = pitMat;
         pit.neededAmount = neededAmount;
         pitPlatform.transform.position = new Vector3(0, 0, endPosZ + pitLength / 2);
         endPosZ += pitLength;
@@ -268,6 +319,8 @@ public class LevelEditor : MonoBehaviour
     }
     #endregion
 
+    #region Load Methods
+
     public void LoadLevel()
     {
         string levelName;
@@ -300,4 +353,5 @@ public class LevelEditor : MonoBehaviour
         }
         
     }
+    #endregion
 }
