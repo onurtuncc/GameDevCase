@@ -4,7 +4,6 @@ using UnityEngine;
     public class GameController : MonoBehaviour
     {
         [SerializeField] SwerveMovement movement;
-
         [SerializeField] LevelManager levelController;
         [SerializeField] CameraManager cameraManager;
         public void StartGameButton()

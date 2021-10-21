@@ -4,7 +4,6 @@
 public class Level : ScriptableObject
 {
     public enum LevelEndType { Normal,Ramp};
-    public int level;
     public Material groundMat;
     public Material pitMat;
     public Color groundColor;

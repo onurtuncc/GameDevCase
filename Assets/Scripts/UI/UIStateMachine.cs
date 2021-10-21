@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Pixelplacement
 {
-    public class UIStateMachine : MonoBehaviour
+    public class UIStateMachine : StateMachine
     {
-        StateMachine stateMachine;
+       
         [SerializeField]RampPanelLogic rampState;
         [SerializeField]FailPanelLogic failState;
 
@@ -23,38 +23,37 @@ namespace Pixelplacement
             Basket.OnRampEnter -= RampState;
         }
 
-        private void Awake()
-        {
-            stateMachine = GetComponent<StateMachine>();
-           
-        }
+        
 
         public void StartLevel()
         {
-            stateMachine.ChangeState(0);
+            
+            ChangeState(0);
         }
 
         public void StartGameplayUI()
         {
-            stateMachine.ChangeState(1);
+           
+            ChangeState(1);
         }
 
         public void WinState()
         {
-            stateMachine.ChangeState(4);
+           
+            ChangeState(4);
         }
         public void FailState(ObjectPit objectPit)
         {
 
             failState.SetPitToContinue(objectPit);
-            stateMachine.ChangeState(3);
-            
+            ChangeState(3);
+
         }
         public void RampState(RampController rampController)
         {
             rampState.SetFillController(rampController);
-            stateMachine.ChangeState(2);
-            
+            ChangeState(2);
+
         }
         
     }

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61015d9fbb184b6492cf44431bb42d5, type: 3}
+  m_Name: Level 5
+  m_EditorClassIdentifier: 
+  groundMat: {fileID: 0}
+  pitMat: {fileID: 0}
+  groundColor: {r: 0, g: 0, b: 0, a: 0}
+  pitColor: {r: 0, g: 0, b: 0, a: 0}
+  roads:
+  - roadLength: 20
+  collectableobjects:
+  - objectType: 0
+    size: 0.5
+    spawnPoint: {x: 0.96366143, y: 0.35372353, z: 10.618068}
+  - objectType: 0
+    size: 0.5
+    spawnPoint: {x: 0.9272096, y: 0.35111046, z: 9.457438}
+  - objectType: 0
+    size: 0.5
+    spawnPoint: {x: 0.8637967, y: 0.20354939, z: 8.84017}
+  - objectType: 0
+    size: 0.5
+    spawnPoint: {x: 1.647089, y: 0.3764305, z: 9.713266}
+  - objectType: 0
+    size: 0.5
+    spawnPoint: {x: 1.4921199, y: 0.19602299, z: 8.4690895}
+  - objectType: 2
+    size: 0.5
+    spawnPoint: {x: 1.5612892, y: 0.5241041, z: 13.525582}
+  - objectType: 1
+    size: 0.5
+    spawnPoint: {x: 1.7154375, y: 0.2972374, z: 11.693778}
+  objectPoolNeededAmount: 05000000
+  levelEndType: 1

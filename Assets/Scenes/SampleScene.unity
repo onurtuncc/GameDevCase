@@ -907,7 +907,6 @@ GameObject:
   m_Component:
   - component: {fileID: 341378711}
   - component: {fileID: 341378713}
-  - component: {fileID: 341378712}
   - component: {fileID: 341378714}
   m_Layer: 5
   m_Name: UIStateMachine
@@ -940,7 +939,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &341378712
+--- !u!114 &341378713
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -949,7 +948,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 341378710}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e0b24e2f2ad54cc09940c320ed3cf4b, type: 3}
+  m_Script: {fileID: 11500000, guid: 55938fb1577dd4ad3af7e994048c86f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &341378714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 341378710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd92d6def03f64402b3d6d6818c774d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultState: {fileID: 1265910541}
@@ -976,30 +987,6 @@ MonoBehaviour:
   OnLastStateExited:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &341378713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 341378710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55938fb1577dd4ad3af7e994048c86f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &341378714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 341378710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd92d6def03f64402b3d6d6818c774d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   rampState: {fileID: 1248443864}
   failState: {fileID: 1339752426}
 --- !u!1 &357437803

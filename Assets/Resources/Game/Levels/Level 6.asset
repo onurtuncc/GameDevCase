@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61015d9fbb184b6492cf44431bb42d5, type: 3}
+  m_Name: Level 6
+  m_EditorClassIdentifier: 
+  groundMat: {fileID: 0}
+  pitMat: {fileID: 0}
+  groundColor: {r: 0, g: 0, b: 0, a: 0}
+  pitColor: {r: 0, g: 0, b: 0, a: 0}
+  roads:
+  - roadLength: 20
+  collectableobjects:
+  - objectType: 0
+    size: 1
+    spawnPoint: {x: 4.092304, y: 0.2768116, z: 14.340303}
+  - objectType: 1
+    size: 1
+    spawnPoint: {x: 1.5376863, y: 0.5516739, z: 13.897075}
+  - objectType: 2
+    size: 1
+    spawnPoint: {x: -1.3623502, y: 0.8961811, z: 11.646482}
+  - objectType: 2
+    size: 1
+    spawnPoint: {x: -1.0490444, y: 1.4214096, z: 13.074006}
+  objectPoolNeededAmount: 0f000000
+  levelEndType: 0
