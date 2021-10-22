@@ -161,8 +161,8 @@ public class LevelEditor : MonoBehaviour
             if (roadLength > 0)
             {
                 CreateRoadObject(roadLength);
-                roadButton.interactable = false;
-                pitButton.interactable = true;
+                //roadButton.interactable = false;
+                //pitButton.interactable = true;
 
                 
             }
@@ -191,8 +191,8 @@ public class LevelEditor : MonoBehaviour
             if (neededAmount > 0)
             {
                 CreatePitObject(neededAmount);
-                pitButton.interactable = false;
-                roadButton.interactable = true;
+                //pitButton.interactable = false;
+                //roadButton.interactable = true;
                
             }
         }

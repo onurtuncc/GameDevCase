@@ -54,7 +54,7 @@ MonoBehaviour:
     spawnPoint: {x: 2.0295026, y: 0.25, z: 25.8404}
   - objectType: 1
     size: 0.5
-    spawnPoint: {x: 2.0295026, y: 0.25, z: 26.8404}
+    spawnPoint: {x: 2.1825316, y: 0.25, z: 26.825533}
   - objectType: 1
     size: 0.5
     spawnPoint: {x: 1.3239872, y: 0.25, z: 26.070557}
@@ -79,9 +79,6 @@ MonoBehaviour:
   - objectType: 2
     size: 0.5
     spawnPoint: {x: -2.0383346, y: 0.25, z: 41.47052}
-  - objectType: 1
-    size: 0.5
-    spawnPoint: {x: -2.164695, y: 0.25, z: 42.5076}
   objectPoolNeededAmount: 01000000
-  isBonusLevel: 1
-  levelEndType: 0
+  isBonusLevel: 0
+  levelEndType: 1
