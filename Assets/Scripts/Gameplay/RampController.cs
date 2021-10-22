@@ -59,12 +59,15 @@ public class RampController : MonoBehaviour
                 isInRampPhase = false;
                 if (throwPoint > maxThrowPoint) throwPoint = maxThrowPoint;
                 Sequence throwSequence = DOTween.Sequence();
-                throwSequence.Append(playerTransform.DOJump(new Vector3(0, 0, rampTop.position.z + minThrowPoint + throwPoint), 20, 1, flightTime,false).
-                    SetEase(Ease.InOutQuart));
-                
-                throwSequence.Join(playerTransform.DOShakeRotation(flightTime, 10, 5));
-                throwSequence.Join(playerTransform.DORotate(Vector3.zero, flightTime+1));
-                throwSequence.Append(playerTransform.DOShakeRotation(0.2f, 10, 2));
+                throwSequence.Append(playerTransform.DOJump(new Vector3(0, 0, rampTop.position.z + minThrowPoint + throwPoint),
+                    20, 1, flightTime, false));
+                    
+
+                //throwSequence.Join(playerTransform.DOShakeRotation(flightTime, 10, 5));
+                throwSequence.Join(playerTransform.DORotate(Vector3.left*throwPoint,flightTime,RotateMode.FastBeyond360));
+                //throwSequence.Join(playerTransform.DORotate(Vector3.zero, flightTime+1));
+
+                throwSequence.Append(playerTransform.DOShakeRotation(0.4f, 100, 10));
                 throwSequence.Join(playerTransform.DORotate(Vector3.zero, 1f));
                 throwSequence.Append(popUpGoldText.DOText("+"+CalculateGold(),1f));
                 throwSequence.Append(playerTransform.DOMoveZ(finishLine.position.z - 1, 2f));

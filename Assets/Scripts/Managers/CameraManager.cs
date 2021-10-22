@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    
+    
     [SerializeField] private Transform player;
     Vector3 offset;
     private float smoothSpeed = 10f;
@@ -15,7 +17,7 @@ public class CameraManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         Vector3 targetPos = player.position + offset;
         transform.position = Vector3.Lerp(transform.position, targetPos, smoothSpeed * Time.deltaTime);
@@ -24,4 +26,6 @@ public class CameraManager : MonoBehaviour
     {
         transform.position = offset;
     }
+    
+    
 }

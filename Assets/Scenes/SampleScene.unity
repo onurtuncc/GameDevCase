@@ -3429,13 +3429,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1448002760}
   levels:
+  - {fileID: 11400000, guid: 331d57c16cc074b49baff8b2532ff640, type: 2}
   - {fileID: 11400000, guid: cc14939b582c849a0a72e19b47e0afac, type: 2}
   - {fileID: 11400000, guid: 8844730b067d347178c5be0f013ea67c, type: 2}
   - {fileID: 11400000, guid: ff89eaca6c120425ebc4e3616f980ebf, type: 2}
   - {fileID: 11400000, guid: fa510166618b1421c96adea5f1c45dde, type: 2}
   - {fileID: 11400000, guid: a329ce4d5fca2431686c247fe8091da8, type: 2}
   - {fileID: 11400000, guid: 250361a43898b428cb9b014cc6d0c725, type: 2}
-  - {fileID: 11400000, guid: cc14939b582c849a0a72e19b47e0afac, type: 2}
 --- !u!4 &1365294137
 Transform:
   m_ObjectHideFlags: 0
@@ -3664,7 +3664,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1448002756}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 80}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7417638896866181177}
