@@ -12,12 +12,13 @@ using Lean.Pool;
 
         [HideInInspector] public Material groundMaterial;
         [HideInInspector] public Color groundColor;
+        [HideInInspector] public bool isBonus;
         public int neededAmount = 10;
 
 
         private TMP_Text neededAmountText;
         private string textDisplay = "{0}/{1}";
-
+        
         private SwerveMovement playerMovement;
         private Renderer pitRenderer;
 
@@ -35,7 +36,12 @@ using Lean.Pool;
             playerMovement = FindObjectOfType<SwerveMovement>();
             pitRenderer = GetComponent<Renderer>();
             neededAmountText = GetComponentInChildren<TMP_Text>();
-            neededAmountText.text = string.Format(textDisplay, amountInPit, neededAmount);
+            if (!isBonus)
+            {
+                neededAmountText.text = string.Format(textDisplay, amountInPit, neededAmount);
+            }
+            
+            
         }
 
         public void PassThePit()
@@ -58,7 +64,9 @@ using Lean.Pool;
                 LeanPool.Despawn(collision.gameObject);
 
                 amountInPit++;
-                neededAmountText.text = string.Format(textDisplay, amountInPit, neededAmount);
+                if (isBonus) neededAmountText.text = amountInPit.ToString();
+
+                else neededAmountText.text = string.Format(textDisplay, amountInPit, neededAmount);
 
             }
 
@@ -69,15 +77,25 @@ using Lean.Pool;
         {
 
             yield return new WaitForSeconds(waitTime);
-            if (amountInPit >= neededAmount)
+            if (isBonus)
             {
+                ScoreManager.ScoreManagerInstance.Score = amountInPit;
+                ScoreManager.ScoreManagerInstance.AddLevelScore();
                 PassThePit();
             }
             else
             {
-                Debug.Log("Level failed");
-                OnLevelFailed.Invoke(this);
+                if (amountInPit >= neededAmount)
+                {
+                    PassThePit();
+                }
+                else
+                {
+                    Debug.Log("Level failed");
+                    OnLevelFailed.Invoke(this);
+                }
             }
+            
 
         }
 

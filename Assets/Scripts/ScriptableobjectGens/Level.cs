@@ -11,6 +11,7 @@ public class Level : ScriptableObject
     public Road[] roads;
     public Collectableobject[] collectableobjects;
     public int[] objectPoolNeededAmount;
+    public bool isBonusLevel;
     public LevelEndType levelEndType;
     
 }

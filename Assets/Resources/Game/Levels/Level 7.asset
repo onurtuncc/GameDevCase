@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c61015d9fbb184b6492cf44431bb42d5, type: 3}
+  m_Name: Level 7
+  m_EditorClassIdentifier: 
+  groundMat: {fileID: 2100000, guid: 670781605e51c410dacff217feab8a21, type: 2}
+  pitMat: {fileID: 2100000, guid: a5ad2aa18b5cd45cdb3682c2f72ff8de, type: 2}
+  groundColor: {r: 0.4580261, g: 0.6784314, b: 0.11372547, a: 1}
+  pitColor: {r: 0.7176471, g: 0.38039216, b: 0.6393636, a: 1}
+  roads:
+  - roadLength: 50
+  collectableobjects:
+  - objectType: 0
+    size: 0.3
+    spawnPoint: {x: 1.3178506, y: 0.15, z: 12.744019}
+  - objectType: 0
+    size: 0.3
+    spawnPoint: {x: 1.3500946, y: 0.15, z: 7.6536407}
+  - objectType: 0
+    size: 0.3
+    spawnPoint: {x: 0.5475068, y: 0.15, z: 7.6514196}
+  - objectType: 0
+    size: 0.3
+    spawnPoint: {x: -0.24627542, y: 0.15, z: 7.6350627}
+  - objectType: 0
+    size: 0.3
+    spawnPoint: {x: 1.3500946, y: 0.15, z: 8.653641}
+  - objectType: 0
+    size: 0.3
+    spawnPoint: {x: 1.3417443, y: 0.15, z: 9.653179}
+  - objectType: 0
+    size: 0.3
+    spawnPoint: {x: 1.3417443, y: 0.15, z: 10.653179}
+  - objectType: 0
+    size: 0.3
+    spawnPoint: {x: 1.3417443, y: 0.15, z: 11.653179}
+  - objectType: 1
+    size: 0.5
+    spawnPoint: {x: 2.0295026, y: 0.25, z: 23.8404}
+  - objectType: 1
+    size: 0.5
+    spawnPoint: {x: 2.0420864, y: 0.25, z: 24.84061}
+  - objectType: 1
+    size: 0.5
+    spawnPoint: {x: 2.0295026, y: 0.25, z: 25.8404}
+  - objectType: 1
+    size: 0.5
+    spawnPoint: {x: 2.0295026, y: 0.25, z: 26.8404}
+  - objectType: 1
+    size: 0.5
+    spawnPoint: {x: 1.3239872, y: 0.25, z: 26.070557}
+  - objectType: 1
+    size: 0.5
+    spawnPoint: {x: 1.3400085, y: 0.25, z: 27.061878}
+  - objectType: 1
+    size: 0.5
+    spawnPoint: {x: 1.3239872, y: 0.25, z: 28.070557}
+  - objectType: 1
+    size: 0.5
+    spawnPoint: {x: 1.3239872, y: 0.25, z: 29.070557}
+  - objectType: 1
+    size: 0.5
+    spawnPoint: {x: -2.164695, y: 0.25, z: 38.5076}
+  - objectType: 2
+    size: 0.5
+    spawnPoint: {x: -2.18034, y: 0.25, z: 39.5044}
+  - objectType: 1
+    size: 0.5
+    spawnPoint: {x: -2.164695, y: 0.25, z: 40.5076}
+  - objectType: 2
+    size: 0.5
+    spawnPoint: {x: -2.0383346, y: 0.25, z: 41.47052}
+  - objectType: 1
+    size: 0.5
+    spawnPoint: {x: -2.164695, y: 0.25, z: 42.5076}
+  objectPoolNeededAmount: 01000000
+  isBonusLevel: 1
+  levelEndType: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 
     public class Basket : MonoBehaviour
     {
-        private List<Rigidbody> collectedRb = new List<Rigidbody>();
+        [SerializeField]private List<Rigidbody> collectedRb = new List<Rigidbody>();
         private float throwPower = 150f;
         private SwerveMovement playerMovement;
 
@@ -33,6 +33,7 @@ using UnityEngine;
             else if (other.tag == "Finish")
             {
                 PlayerPrefController.Instance.PassNextLevel();
+                
                 OnLevelCompleted.Invoke();
             }
             else if (other.tag == "RampStart")
@@ -47,6 +48,10 @@ using UnityEngine;
             }
 
 
+        }
+        public void EmptyBasket()
+        {
+            collectedRb.RemoveRange(0, collectedRb.Count);
         }
         private void OnTriggerExit(Collider other)
         {

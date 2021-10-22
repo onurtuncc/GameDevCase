@@ -90,9 +90,11 @@ using Lean.Pool;
                 pit = pitPlatform.transform.GetChild(0).gameObject;
                 pit.GetComponent<Renderer>().material = level.pitMat;
                 pit.GetComponent<Renderer>().material.color = level.pitColor;
-                pit.GetComponent<ObjectPit>().neededAmount = level.objectPoolNeededAmount[i];
-                pit.GetComponent<ObjectPit>().groundColor = level.groundColor;
-                pit.GetComponent<ObjectPit>().groundMaterial = level.groundMat;
+                var objectPit = pit.GetComponent<ObjectPit>();
+                objectPit.neededAmount = level.objectPoolNeededAmount[i];
+                objectPit.groundColor = level.groundColor;
+                objectPit.groundMaterial = level.groundMat;
+                objectPit.isBonus = level.isBonusLevel;
                 //Setting up positions and scales
                 float roadLength = level.roads[i].roadLength;
                 plane.transform.localScale = new Vector3(1, 1, roadLength / 10);

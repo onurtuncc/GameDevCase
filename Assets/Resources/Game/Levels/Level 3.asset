@@ -12,46 +12,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61015d9fbb184b6492cf44431bb42d5, type: 3}
   m_Name: Level 3
   m_EditorClassIdentifier: 
-  level: 3
   groundMat: {fileID: 2100000, guid: 5bcd988846d2b455fb95f55970fb47a3, type: 2}
   pitMat: {fileID: 2100000, guid: 01f638222a61241ab8979a8d9f490d13, type: 2}
   groundColor: {r: 0.08552865, g: 0.5849056, b: 0.3907922, a: 0}
   pitColor: {r: 0.44700304, g: 0, b: 0.49019608, a: 0}
   roads:
   - roadLength: 30
-    collectableObjectsOnRoad:
-    - objectType: 0
-      size: 0.5
-      spawnPoint: {x: 0, y: 0, z: 10}
-    - objectType: 0
-      size: 0.5
-      spawnPoint: {x: 0, y: 0, z: 11}
-    - objectType: 0
-      size: 0.5
-      spawnPoint: {x: 0, y: 0, z: 12}
-    - objectType: 0
-      size: 0.5
-      spawnPoint: {x: 0, y: 0, z: 13}
-    - objectType: 0
-      size: 0.5
-      spawnPoint: {x: 0, y: 0, z: 14}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 3, y: 0, z: 18}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 2.5, y: 0, z: 18}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 3, y: 0, z: 19}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 2.5, y: 0, z: 19}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 3, y: 0, z: 20}
-    - objectType: 2
-      size: 0.5
-      spawnPoint: {x: 2.5, y: 0, z: 20}
-  objectPoolNeededAmount: 0a000000
+  collectableobjects:
+  - objectType: 0
+    size: 0.7
+    spawnPoint: {x: -1.2737695, y: 0.5279236, z: 7.8078594}
+  - objectType: 0
+    size: 0.7
+    spawnPoint: {x: -1.2790747, y: 0.5279436, z: 8.791445}
+  - objectType: 0
+    size: 0.7
+    spawnPoint: {x: -1.2737695, y: 0.5279236, z: 9.807859}
+  - objectType: 0
+    size: 0.7
+    spawnPoint: {x: -1.2737695, y: 0.5279236, z: 10.807859}
+  - objectType: 0
+    size: 0.7
+    spawnPoint: {x: -1.2737695, y: 0.5279236, z: 11.807859}
+  - objectType: 0
+    size: 0.7
+    spawnPoint: {x: -0.17207623, y: 0.5775099, z: 11.867777}
+  - objectType: 0
+    size: 0.7
+    spawnPoint: {x: -0.12937164, y: 0.5654154, z: 12.963451}
+  - objectType: 0
+    size: 0.7
+    spawnPoint: {x: -0.023171425, y: 0.7679615, z: 13.912575}
+  - objectType: 0
+    size: 0.7
+    spawnPoint: {x: -0.023171425, y: 0.7679615, z: 14.912575}
+  - objectType: 0
+    size: 0.7
+    spawnPoint: {x: -1.9794064, y: 0.6765404, z: 18.671013}
+  - objectType: 0
+    size: 0.7
+    spawnPoint: {x: -0.023171425, y: 0.7679615, z: 15.912575}
+  - objectType: 0
+    size: 0.7
+    spawnPoint: {x: -1.9687462, y: 0.7038727, z: 19.80471}
+  - objectType: 0
+    size: 0.7
+    spawnPoint: {x: -1.9429045, y: 0.6748743, z: 20.796337}
+  - objectType: 0
+    size: 0.7
+    spawnPoint: {x: -1.9429045, y: 0.6748743, z: 21.796337}
+  - objectType: 0
+    size: 0.7
+    spawnPoint: {x: -1.9429045, y: 0.6748743, z: 22.796337}
+  - objectType: 0
+    size: 0.7
+    spawnPoint: {x: -1.0939913, y: 0.4523077, z: 22.930485}
+  - objectType: 0
+    size: 0.7
+    spawnPoint: {x: -1.0939913, y: 0.4523077, z: 23.930485}
+  objectPoolNeededAmount: 0f000000
   levelEndType: 1

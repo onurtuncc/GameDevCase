@@ -30,7 +30,10 @@ public class ScoreManager : MonoBehaviour
         }
         score = 0;
     }
-
+    public void AddLevelScore()
+    {
+        PlayerPrefController.Instance.AddGold((int)score);
+    }
 
     
 }

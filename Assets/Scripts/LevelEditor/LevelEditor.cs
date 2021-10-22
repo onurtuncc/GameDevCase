@@ -220,7 +220,8 @@ public class LevelEditor : MonoBehaviour
     {
         for(int i = 0; i < collectables.Count; i++)
         {
-            collectables[i].spawnPoint = collectableObjectsCreated[i].transform.position;
+            var pos = collectableObjectsCreated[i].transform.position;
+            collectables[i].spawnPoint = new Vector3(pos.x,collectables[i].size/2,pos.z);
         }
         
         
@@ -240,7 +241,12 @@ public class LevelEditor : MonoBehaviour
         else
         {
             if (!isBonus.isOn) level.levelEndType = Level.LevelEndType.Ramp;
+            level.isBonusLevel = isBonus.isOn;
             SetSpawnPoints();
+            level.groundMat = groundMat;
+            level.pitMat = pitMat;
+            level.groundColor = groundMat.color;
+            level.pitColor = pitMat.color;
             level.roads = roads.ToArray();
             level.objectPoolNeededAmount = neededAmounts.ToArray();
             level.collectableobjects = collectables.ToArray();
@@ -338,6 +344,10 @@ public class LevelEditor : MonoBehaviour
     }
     private void CreateLevel(Level levelToCreate)
     {
+        if(levelToCreate.groundMat!=null) groundMat = levelToCreate.groundMat;
+        if(levelToCreate.pitMat!=null) pitMat = levelToCreate.pitMat;
+        if(levelToCreate.groundColor!=Color.black) groundMat.color = levelToCreate.groundColor;
+        if(levelToCreate.pitColor!=Color.black) pitMat.color = levelToCreate.pitColor;
         var parentObject = new GameObject("Level Elements").transform;
         for(int i = 0; i < levelToCreate.roads.Length; i++)
         {

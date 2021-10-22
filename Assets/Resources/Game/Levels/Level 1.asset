@@ -35,5 +35,53 @@ MonoBehaviour:
   - objectType: 0
     size: 0.5
     spawnPoint: {x: 0, y: 0, z: 14}
+  - objectType: 0
+    size: 0.3
+    spawnPoint: {x: -1.242493, y: 0.1566925, z: 50.83397}
+  - objectType: 0
+    size: 0.3
+    spawnPoint: {x: -1.1803722, y: 0.3332162, z: 49.862617}
+  - objectType: 0
+    size: 0.3
+    spawnPoint: {x: -1.2687504, y: 0.25466442, z: 51.44896}
+  - objectType: 1
+    size: 0.3
+    spawnPoint: {x: -0.85138726, y: 0.30384445, z: 51.556824}
+  - objectType: 1
+    size: 0.3
+    spawnPoint: {x: -0.86346936, y: 0.2185092, z: 52.317055}
+  - objectType: 1
+    size: 0.3
+    spawnPoint: {x: -0.86615616, y: 0.28009415, z: 52.840767}
+  - objectType: 1
+    size: 0.3
+    spawnPoint: {x: -0.87231904, y: 0.24226522, z: 53.80452}
+  - objectType: 1
+    size: 0.3
+    spawnPoint: {x: -0.881061, y: 0.21580362, z: 54.778618}
+  - objectType: 2
+    size: 0.3
+    spawnPoint: {x: 1.3740438, y: 0.43568945, z: 56.873314}
+  - objectType: 2
+    size: 0.3
+    spawnPoint: {x: 1.8361359, y: 0.42909098, z: 56.876648}
+  - objectType: 2
+    size: 0.3
+    spawnPoint: {x: 1.8361359, y: 0.42909098, z: 57.876648}
+  - objectType: 2
+    size: 0.3
+    spawnPoint: {x: 1.3740438, y: 0.43568945, z: 57.873314}
+  - objectType: 2
+    size: 0.3
+    spawnPoint: {x: 1.3740438, y: 0.43568945, z: 58.873314}
+  - objectType: 2
+    size: 0.3
+    spawnPoint: {x: 1.8361359, y: 0.42909098, z: 58.876648}
+  - objectType: 2
+    size: 0.3
+    spawnPoint: {x: 1.3740438, y: 0.43568945, z: 59.873314}
+  - objectType: 2
+    size: 0.3
+    spawnPoint: {x: 1.8361359, y: 0.42909098, z: 59.876648}
   objectPoolNeededAmount: 050000000a000000
   levelEndType: 1

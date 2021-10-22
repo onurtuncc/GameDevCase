@@ -78,7 +78,7 @@ public class RampController : MonoBehaviour
     {
         int levelScore = 300 + (int)Mathf.Ceil(throwPoint / 5)*20;
         ScoreManager.ScoreManagerInstance.Score = levelScore;
-        PlayerPrefController.Instance.AddGold(levelScore);
+        ScoreManager.ScoreManagerInstance.AddLevelScore();
         return levelScore;
     }
     

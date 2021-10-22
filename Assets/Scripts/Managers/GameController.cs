@@ -6,6 +6,7 @@ using UnityEngine;
         [SerializeField] SwerveMovement movement;
         [SerializeField] LevelManager levelController;
         [SerializeField] CameraManager cameraManager;
+        [SerializeField] Basket basketController;
         public void StartGameButton()
         {
             StartGameplay();
@@ -27,6 +28,7 @@ using UnityEngine;
 
         private void StartGame(bool isReplay)
         {
+            basketController.EmptyBasket();
             cameraManager.GetToStart();
             movement.canMove = false;
             levelController.PickLevelAndCreate(isReplay);
