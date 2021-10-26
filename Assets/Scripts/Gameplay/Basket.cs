@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +7,12 @@ using UnityEngine;
     public class Basket : MonoBehaviour
     {
         [SerializeField]private List<Rigidbody> collectedRb = new List<Rigidbody>();
-        private float throwPower = 150f;
+        private float throwPower = 250f;
         private SwerveMovement playerMovement;
 
         public static event Action OnLevelCompleted;
         public static event Action<RampController> OnRampEnter = delegate { };
+        private float levelEndWaitTime = 2f;
 
 
         private void Start()
@@ -32,14 +34,17 @@ using UnityEngine;
             }
             else if (other.tag == "Finish")
             {
-                PlayerPrefController.Instance.PassNextLevel();
                 
-                OnLevelCompleted.Invoke();
+                PlayerPrefController.Instance.PassNextLevel();
+                StartCoroutine(LevelCompletedCoroutine());
+               
             }
+            
             else if (other.tag == "RampStart")
             {
-
+                Debug.Log("Ramp Phase Starts");
                 playerMovement.canMove = false;
+                playerMovement.rb.velocity = Vector3.zero;
                 var rampController = other.GetComponent<RampController>();
                 rampController.RampState(playerMovement.transform);
                 OnRampEnter.Invoke(rampController);
@@ -66,11 +71,16 @@ using UnityEngine;
         private void ThrowThemAll()
         {
             playerMovement.canMove = false;
-
+            playerMovement.rb.velocity = Vector3.zero;
             foreach (Rigidbody rb in collectedRb)
             {
                 if (rb != null) rb.AddForce(0, 0, throwPower);
 
             }
+        }
+        IEnumerator LevelCompletedCoroutine()
+        {
+            yield return new WaitForSeconds(levelEndWaitTime);
+            OnLevelCompleted.Invoke();
         }
     }

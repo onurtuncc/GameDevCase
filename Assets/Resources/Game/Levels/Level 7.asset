@@ -80,5 +80,5 @@ MonoBehaviour:
     size: 0.5
     spawnPoint: {x: -2.0383346, y: 0.25, z: 41.47052}
   objectPoolNeededAmount: 01000000
-  isBonusLevel: 0
-  levelEndType: 1
+  isBonusLevel: 1
+  levelEndType: 0

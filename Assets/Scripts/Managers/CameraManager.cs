@@ -8,7 +8,7 @@ public class CameraManager : MonoBehaviour
     
     [SerializeField] private Transform player;
     Vector3 offset;
-    private float smoothSpeed = 10f;
+    public float smoothSpeed = 10f;
   
     void Start()
     {
@@ -17,7 +17,7 @@ public class CameraManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
         Vector3 targetPos = player.position + offset;
         transform.position = Vector3.Lerp(transform.position, targetPos, smoothSpeed * Time.deltaTime);

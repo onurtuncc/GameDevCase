@@ -21,115 +21,116 @@ MonoBehaviour:
   - roadLength: 20
   collectableobjects:
   - objectType: 2
-    size: 0.7
-    spawnPoint: {x: -0.08142471, y: 0.79252815, z: 6.9894624}
+    size: 0.35
+    spawnPoint: {x: -0.08142471, y: 0.175, z: 6.9894624}
   - objectType: 2
-    size: 0.7
-    spawnPoint: {x: -0.08142471, y: 0.79252815, z: 7.9894624}
+    size: 0.35
+    spawnPoint: {x: -0.08142471, y: 0.175, z: 7.9894624}
   - objectType: 2
-    size: 0.7
-    spawnPoint: {x: -0.08142471, y: 0.79252815, z: 9.150356}
+    size: 0.35
+    spawnPoint: {x: -0.08142471, y: 0.175, z: 9.150356}
   - objectType: 2
-    size: 0.7
-    spawnPoint: {x: -0.08142471, y: 0.79252815, z: 10.150356}
+    size: 0.35
+    spawnPoint: {x: -0.08142471, y: 0.175, z: 10.150356}
   - objectType: 2
-    size: 0.7
-    spawnPoint: {x: 0.55265546, y: 0.79252815, z: 7.0019855}
+    size: 0.35
+    spawnPoint: {x: 0.55265546, y: 0.175, z: 7.0019855}
   - objectType: 2
-    size: 0.7
-    spawnPoint: {x: 0.55265546, y: 0.79252815, z: 8.001986}
+    size: 0.35
+    spawnPoint: {x: 0.55265546, y: 0.175, z: 8.001986}
   - objectType: 2
-    size: 0.7
-    spawnPoint: {x: 0.55265546, y: 0.79252815, z: 9.001986}
+    size: 0.35
+    spawnPoint: {x: 0.55265546, y: 0.175, z: 9.001986}
   - objectType: 2
-    size: 0.7
-    spawnPoint: {x: 0.55265546, y: 0.79252815, z: 10.001986}
+    size: 0.35
+    spawnPoint: {x: 0.55265546, y: 0.175, z: 10.001986}
   - objectType: 2
-    size: 0.7
-    spawnPoint: {x: 0.55265546, y: 0.79252815, z: 11.001986}
+    size: 0.35
+    spawnPoint: {x: 0.55265546, y: 0.175, z: 11.001986}
   - objectType: 2
-    size: 0.7
-    spawnPoint: {x: -0.08142471, y: 0.79252815, z: 11.150356}
+    size: 0.35
+    spawnPoint: {x: -0.08142471, y: 0.175, z: 11.150356}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 2.075758, y: 0.47263908, z: 16.839785}
+    size: 0.35
+    spawnPoint: {x: 2.075758, y: 0.175, z: 16.839785}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 2.0874853, y: 0.45353317, z: 17.83572}
+    size: 0.35
+    spawnPoint: {x: 2.0874853, y: 0.175, z: 17.83572}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 2.0874853, y: 0.45353317, z: 18.83572}
+    size: 0.35
+    spawnPoint: {x: 2.0874853, y: 0.175, z: 18.83572}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 2.090273, y: 0.47263908, z: 15.761999}
+    size: 0.35
+    spawnPoint: {x: 2.090273, y: 0.175, z: 15.761999}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 2.0874853, y: 0.45353317, z: 19.83572}
+    size: 0.35
+    spawnPoint: {x: 2.0874853, y: 0.175, z: 19.83572}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 3.0013876, y: 0.48985672, z: 15.776091}
+    size: 0.35
+    spawnPoint: {x: 3.0013876, y: 0.175, z: 15.776091}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 3.0013876, y: 0.48985672, z: 16.77609}
+    size: 0.35
+    spawnPoint: {x: 3.0013876, y: 0.175, z: 16.77609}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 3.0013876, y: 0.48985672, z: 17.77609}
+    size: 0.35
+    spawnPoint: {x: 3.0013876, y: 0.175, z: 17.77609}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 3.0013876, y: 0.48985672, z: 18.77609}
+    size: 0.35
+    spawnPoint: {x: 3.0013876, y: 0.175, z: 18.77609}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 3.0013876, y: 0.48985672, z: 19.77609}
+    size: 0.35
+    spawnPoint: {x: 3.0013876, y: 0.175, z: 19.77609}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 3.0013876, y: 0.48985672, z: 20.77609}
+    size: 0.35
+    spawnPoint: {x: 3.0013876, y: 0.175, z: 20.77609}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 2.0874853, y: 0.45353317, z: 20.83572}
+    size: 0.35
+    spawnPoint: {x: 2.0874853, y: 0.175, z: 20.83572}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 1.3329589, y: 0.45353317, z: 21.83572}
+    size: 0.35
+    spawnPoint: {x: 1.3329589, y: 0.175, z: 21.83572}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 1.2216358, y: 0.36978912, z: 22.961245}
+    size: 0.35
+    spawnPoint: {x: 1.2216358, y: 0.175, z: 22.961245}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 0.46240044, y: 0.41214943, z: 21.850962}
+    size: 0.35
+    spawnPoint: {x: 0.46240044, y: 0.175, z: 21.850962}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 0.4624691, y: 0.4121437, z: 22.851147}
+    size: 0.35
+    spawnPoint: {x: 0.4624691, y: 0.175, z: 22.851147}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 1.2216358, y: 0.36978912, z: 23.961245}
+    size: 0.35
+    spawnPoint: {x: 1.2216358, y: 0.175, z: 23.961245}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 0.46240044, y: 0.41214943, z: 23.850962}
+    size: 0.35
+    spawnPoint: {x: 0.46240044, y: 0.175, z: 23.850962}
   - objectType: 0
-    size: 0.7
-    spawnPoint: {x: 1.8497515, y: 0.47638416, z: 45.94677}
+    size: 0.35
+    spawnPoint: {x: 1.8497515, y: 0.175, z: 45.94677}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 1.8497515, y: 0.47638416, z: 46.94677}
+    size: 0.35
+    spawnPoint: {x: 1.8497515, y: 0.175, z: 46.94677}
   - objectType: 0
-    size: 0.7
-    spawnPoint: {x: 1.8497515, y: 0.47638416, z: 47.94677}
+    size: 0.35
+    spawnPoint: {x: 1.8497515, y: 0.175, z: 47.94677}
   - objectType: 1
-    size: 0.7
-    spawnPoint: {x: 1.8497515, y: 0.47638416, z: 48.94677}
+    size: 0.35
+    spawnPoint: {x: 1.8497515, y: 0.175, z: 48.94677}
   - objectType: 0
-    size: 0.7
-    spawnPoint: {x: 1.8497515, y: 0.47638416, z: 49.94677}
+    size: 0.35
+    spawnPoint: {x: 1.8497515, y: 0.175, z: 49.94677}
   - objectType: 0
-    size: 0.7
-    spawnPoint: {x: -1.2580175, y: 0.46452236, z: 51.00231}
+    size: 0.35
+    spawnPoint: {x: -1.2580175, y: 0.175, z: 51.00231}
   - objectType: 2
-    size: 0.7
-    spawnPoint: {x: -1.2959694, y: 0.47638416, z: 51.94677}
+    size: 0.35
+    spawnPoint: {x: -1.2959694, y: 0.175, z: 51.94677}
   - objectType: 0
-    size: 0.7
-    spawnPoint: {x: -1.2959694, y: 0.47638416, z: 52.94677}
+    size: 0.35
+    spawnPoint: {x: -1.2959694, y: 0.175, z: 52.94677}
   - objectType: 2
-    size: 0.7
-    spawnPoint: {x: -1.2959694, y: 0.47638416, z: 53.94677}
+    size: 0.35
+    spawnPoint: {x: -1.2959694, y: 0.175, z: 53.94677}
   objectPoolNeededAmount: 1400000005000000
+  isBonusLevel: 0
   levelEndType: 1

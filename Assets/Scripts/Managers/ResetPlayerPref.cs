@@ -9,6 +9,7 @@ public class ResetPlayerPref : MonoBehaviour
         PlayerPrefs.SetInt("currentLevel", 1);
         PlayerPrefs.SetInt("lastLevelIndex", 0);
         PlayerPrefs.SetInt("nextLevelIndex", 1);
+        PlayerPrefs.DeleteAll();
     }
     
     

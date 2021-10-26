@@ -3,7 +3,7 @@
 
     public class LevelManager : MonoBehaviour
     {
-        [SerializeField] private Transform player;
+       
         public Level[] levels;
         private int currentLevel;
         private int levelToCreate;
@@ -48,13 +48,13 @@
                     levelToReplay = levelToCreate - 1;
 
                 }
-                player.position = Vector3.zero;
+                
                 levelCreator.CreateLevel(levels[levelToCreate], isReplay);
             }
             else
             {
 
-                player.position = Vector3.zero;
+               
                 levelCreator.CreateLevel(levels[levelToReplay], isReplay);
             }
             PlayerPrefController.Instance.SaveLevelData(levelToReplay, levelToCreate);

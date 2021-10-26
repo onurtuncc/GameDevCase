@@ -1,47 +1,50 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using System.Collections;
 
 public class RampController : MonoBehaviour
 {
-    [SerializeField]private Transform rampTop;
-    [SerializeField] private Transform rampStart;
-    [SerializeField] private Transform finishLine;
 
+    [SerializeField] private Transform finishLine;
+    
+    public Transform[] path;
+    private Vector3[] pathPositions;
     [HideInInspector] public Text popUpGoldText;
-    //[HideInInspector]public Image TapBar;
-    private float rampClimbTime = 2f;
-    private float flightTime = 4f;
-    private float toRampTime = 2f;
-    private float minThrowPoint = 10f;
-    private float maxThrowPoint = 50f;
+ 
+    private float rampClimbTime = 4f;
+   
+    private float minThrowPoint = 15f;
+    private float maxThrowPoint = 30f;
     private bool isInRampPhase=false;
     [HideInInspector] public float FillAmount=0;
     private float throwPoint = 0;
-    private float pointPerClick = 2f;
-    Sequence rampSequence;
+    private float pointPerClick = 1.5f;
     Transform playerTransform;
+    Rigidbody rb;
+    RigidbodyConstraints defaultConstraints;
 
-    private void Awake()
+    
+    private void GetPositions()
     {
-        rampSequence = DOTween.Sequence();
+        pathPositions = new Vector3[path.Length];
+        for (int i = 0; i < path.Length; i++)
+        {
+            pathPositions[i] = path[i].position;
+        }
     }
+    
 
     public void RampState(Transform player)
     {
+        Debug.Log("In Ramp State");
+        GetPositions();
         isInRampPhase = true;
         playerTransform = player;
-        rampSequence = DOTween.Sequence();
-        rampSequence.Append(player.DOMove(rampStart.position, toRampTime));
-        rampSequence.Append(player.DOMove(rampTop.position+Vector3.back, rampClimbTime));
-        rampSequence.Join(player.DORotateQuaternion(rampTop.rotation, rampClimbTime));
-        //Debug.Log(rampTop.position.z + minThrowPoint);
-        /*
-        rampSequence.Append(player.DOJump(new Vector3(0, 0, rampTop.position.z+minThrowPoint+throwPoint), 20, 1, 5));
-        rampSequence.Append(player.DOShakeRotation(0.2f, 10, 2));
-        rampSequence.Append(player.DORotate(Vector3.zero, 1f));
-        rampSequence.Append(player.DOMoveZ(finishLine.position.z-1, 2f));
-        */
+        StartCoroutine(JumpRoutine());
+        Sequence rampSeq = DOTween.Sequence();
+        rampSeq.Append(player.DOPath(pathPositions, rampClimbTime).SetEase(Ease.InOutSine));
+        rampSeq.Join(player.DORotate(new Vector3(-30, 0, 0), 1.1f).SetDelay(0.5f));
 
     }
     public void Update()
@@ -54,36 +57,35 @@ public class RampController : MonoBehaviour
                 FillAmount = throwPoint / maxThrowPoint;
                 
             }
-            if (!rampSequence.IsActive())
-            {
-                isInRampPhase = false;
-                if (throwPoint > maxThrowPoint) throwPoint = maxThrowPoint;
-                Sequence throwSequence = DOTween.Sequence();
-                throwSequence.Append(playerTransform.DOJump(new Vector3(0, 0, rampTop.position.z + minThrowPoint + throwPoint),
-                    20, 1, flightTime, false));
-                    
-
-                //throwSequence.Join(playerTransform.DOShakeRotation(flightTime, 10, 5));
-                throwSequence.Join(playerTransform.DORotate(Vector3.left*throwPoint,flightTime,RotateMode.FastBeyond360));
-                //throwSequence.Join(playerTransform.DORotate(Vector3.zero, flightTime+1));
-
-                throwSequence.Append(playerTransform.DOShakeRotation(0.4f, 100, 10));
-                throwSequence.Join(playerTransform.DORotate(Vector3.zero, 1f));
-                throwSequence.Append(popUpGoldText.DOText("+"+CalculateGold(),1f));
-                throwSequence.Append(playerTransform.DOMoveZ(finishLine.position.z - 1, 2f));
-             
-                
-            }
-            
         }
     }
-    public int CalculateGold()
+    public void EndLevel(int reward)
     {
-        int levelScore = 300 + (int)Mathf.Ceil(throwPoint / 5)*20;
-        ScoreManager.ScoreManagerInstance.Score = levelScore;
-        ScoreManager.ScoreManagerInstance.AddLevelScore();
-        return levelScore;
+        if (rb == null || playerTransform == null) return;
+        Debug.Log("Ramp Level END started");
+        rb.constraints = defaultConstraints;
+        Sequence levelEndSequence = DOTween.Sequence();
+        levelEndSequence.Append(popUpGoldText.DOText("+" + reward.ToString(), 1f));
+        levelEndSequence.Append(playerTransform.DORotate(new Vector3(playerTransform.rotation.x,0,playerTransform.rotation.z), 2f));
+       
+        levelEndSequence.Append(playerTransform.DOMove(finishLine.position + Vector3.up * 0.49f+Vector3.back*4, 3f));
+
+
     }
+    
+   
+    IEnumerator JumpRoutine()
+    {
+        yield return new WaitForSeconds(rampClimbTime-1.2f);
+        rb = playerTransform.GetComponent<Rigidbody>();
+        defaultConstraints = rb.constraints;
+        rb.constraints = RigidbodyConstraints.None;
+        isInRampPhase = false;
+        if (throwPoint > maxThrowPoint) throwPoint = maxThrowPoint;
+        rb.AddForce(0, 30+throwPoint/5,(minThrowPoint+throwPoint), ForceMode.Impulse);
+        playerTransform.GetComponent<ClaimReward>().checkClaim = true;
+    }
+
     
 
 }

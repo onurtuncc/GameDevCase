@@ -28,9 +28,11 @@ using UnityEngine;
 
         private void StartGame(bool isReplay)
         {
-            basketController.EmptyBasket();
-            cameraManager.GetToStart();
+            movement.gameObject.transform.position = Vector3.zero;
+            movement.rb.velocity = Vector3.zero;
             movement.canMove = false;
+            cameraManager.GetToStart();
+            basketController.EmptyBasket();
             levelController.PickLevelAndCreate(isReplay);
 
         }

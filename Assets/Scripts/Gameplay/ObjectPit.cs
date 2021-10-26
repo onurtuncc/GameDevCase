@@ -25,7 +25,7 @@ using Lean.Pool;
         private int amountInPit = 0;
         private bool isPit = true;
         private float waitTime = 3f;
-        private float ascendingTime = 1;
+        private float ascendingTime = 0.7f;
 
         public static event Action<ObjectPit> OnLevelFailed = delegate { };
 

@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEditor;
@@ -30,14 +29,14 @@ public class LevelEditor : MonoBehaviour
     private List<int> lastobjectType = new List<int>();
     private Material[] groundMats;
     private Material[] pitMats;
-
+    #endregion
 
     #region Variables
     private Material groundMat;
     private Material pitMat;
     private int matIndex = 0;
     private int pitmatIndex = 0;
-    #endregion
+    
     private float endPosZ=0;
     private float pitLength = 10f;
     private Transform selected;
@@ -250,12 +249,15 @@ public class LevelEditor : MonoBehaviour
             level.roads = roads.ToArray();
             level.objectPoolNeededAmount = neededAmounts.ToArray();
             level.collectableobjects = collectables.ToArray();
+            //In comment because of build errors
+            
             if (AssetDatabase.Contains(level)) level.name= level.name + "(1)";
             AssetDatabase.CreateAsset(level, "Assets/Resources/Game/Levels/" + level.name + ".asset");
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             EditorUtility.FocusProjectWindow();
             Selection.activeObject = level;
+            
         }
         
 

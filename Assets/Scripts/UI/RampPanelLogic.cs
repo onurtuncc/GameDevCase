@@ -28,7 +28,7 @@ namespace Pixelplacement
             if (rc != null)
             {
                 fillImage.fillAmount = rc.FillAmount;
-                percentageText.text = "%" + (rc.FillAmount * 100).ToString();
+                percentageText.text = "%" + (Mathf.Clamp(rc.FillAmount,0,1) * 100).ToString();
             }
                 
 
